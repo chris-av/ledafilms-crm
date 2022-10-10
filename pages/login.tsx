@@ -5,7 +5,7 @@ import LoginForm from '@/components/LoginForm';
 const Login : NextPage = () => {
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className="w-full text-center py-5">Login</h1>
       <LoginForm />
 
       <div className="w-full mx-auto text-center">
