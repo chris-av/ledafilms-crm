@@ -23,7 +23,7 @@ const LoginForm : FC = () => {
   }
 
   return (
-    <form className="w-full max-w-lg mx-auto my-10" onSubmit={handleSubmit}>
+    <form className="bg-pink-50 w-full max-w-lg mx-auto my-10 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
 
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
