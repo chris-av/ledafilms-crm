@@ -30,8 +30,6 @@ const Navbar: FunctionComponent = () => {
             />
           )) }
         </ul>
-
-
       </nav>
 
     </div>
@@ -44,9 +42,7 @@ const MenuItems = ({ title, url, submenu } : MenuItemType) => {
   return (
     <div className="h-full w-36 flex items-center">
       { submenu?.length > 0 ? (
-        <li 
-          className="group h-full w-[inherit] flex justify-center items-center text-center select-none"
-        >
+        <li className="group h-full w-[inherit] flex justify-center items-center text-center select-none">
           <button type="button" aria-haspopup="menu">
             { title }{' '}
             <span>&#x25BC;</span>
