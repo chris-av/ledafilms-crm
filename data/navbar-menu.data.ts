@@ -58,6 +58,14 @@ export interface MenuItemType {
   }[]
 }
 
+export interface SubMenuType {
+  submenu: {
+    title: string,
+    url: string
+  }[]
+}
+
+
 export interface MenuItemsType {
   menus: [MenuItemType]
 }

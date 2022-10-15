@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, FunctionComponent } from 'react';
 import Link from 'next/link';
-import { menuItems, MenuItemType } from '@/data/navbar-menu.data';
+import { menuItems, MenuItemType, SubMenuType } from '@/data/navbar-menu.data';
 
 
 
@@ -68,14 +68,7 @@ const MenuItems = ({ title, url, submenu } : MenuItemType) => {
 
 
 
-interface SubMenu {
-  submenu: {
-    title: string,
-    url: string
-  }[]
-}
-
-const Dropdown = ({ submenu } : SubMenu) => {
+const Dropdown = ({ submenu } : SubMenuType) => {
   return (
     <ul className="absolute hidden group-hover:block top-full w-[inherit] text-sm origin-left rounded-md shadow-lg ring-1 bg-slate-900 py-1 px-3 focus:outline-none">
       {submenu.map((item, index) => (
