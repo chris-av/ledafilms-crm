@@ -51,6 +51,7 @@ export const menuItems = [
 export interface MenuItemType {
   title: string,
   url: string,
+  id?: string | number,
   submenu: {
     title: string,
     url: string
