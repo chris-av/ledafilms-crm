@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import LoginForm from '@/components/LoginForm';
 
 const Contract : NextPage = () => {
   const router = useRouter();
