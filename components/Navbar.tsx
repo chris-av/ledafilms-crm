@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import { menuItems, MenuItemType, SubMenuType } from '@/data/navbar-menu.data';
 
