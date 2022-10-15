@@ -40,7 +40,7 @@ const Navbar: FunctionComponent = () => {
 
 
 
-const MenuItems = ({ title, url, submenu, id }) => {
+const MenuItems = ({ title, url, submenu } : MenuItemType) => {
   return (
     <div className="h-full w-36 flex items-center">
       { submenu?.length > 0 ? (
