@@ -6,11 +6,11 @@ export const menuItems = [
     submenu: [
       {
         title: 'Title Search',
-        url: '/title/search'
+        url: '/titles'
       },
       {
         title: 'Add Title',
-        url: '/title/add'
+        url: '/titles/add'
       }
     ],
   },
@@ -20,11 +20,11 @@ export const menuItems = [
     submenu: [
       {
         title: 'Contract Search',
-        url: '/contract/search'
+        url: '/contracts'
       },
       {
         title: 'Add Contract',
-        url: '/contract/add'
+        url: '/contracts/add'
       }
     ],
   },
