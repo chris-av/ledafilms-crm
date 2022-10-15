@@ -26,6 +26,7 @@ const Navbar: FunctionComponent = () => {
               url={url} 
               submenu={submenu} 
               key={index} 
+              id={index}
             />
           )) }
         </ul>
