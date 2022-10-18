@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { contractsArr } from '@/data/contract.prototype.data';
+import { Contract } from '@/utils/interfaces';
 
 
 const Contract : NextPage = () => {
