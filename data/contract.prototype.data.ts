@@ -10,7 +10,7 @@ import {
 
 export const contractGeneric : Contract = {
   contractType: ContractTypes.Sales,
-  contractNumber: '#asdfd2221',
+  contractNumber: 'DA-366628',
   licensor: 'Paramount',
   licensee: 'YouTube',
   dealStatus: ContractDealStatuses.Active,
