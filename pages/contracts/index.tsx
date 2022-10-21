@@ -9,7 +9,7 @@ const Contracts : NextPage = () => {
       <h1>Contracts</h1>
       <div className="flex flex-col justify-center items-center">
         { contractsArr.map(contract => (
-          <Link href={`/contracts/${contract.contractNumber.replace("#", "")}`}>
+          <Link href={`/contracts/${contract.contractNumber}`}>
             <a>{contract.contractNumber}</a>
           </Link>
         )) }
