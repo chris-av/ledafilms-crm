@@ -133,7 +133,7 @@ const Contract : NextPage = () => {
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Minimum Guarantee
             </label>
-            <input value={contract.mg} onChange={handleChange} name="licensee" type="text" placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input value={contract.mg} onChange={handleChange} name="licensee" type="text" placeholder="Amount" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
 
           <div className="mb-4 md:w-1/2 px-4">
