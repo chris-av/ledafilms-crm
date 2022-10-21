@@ -131,7 +131,7 @@ const Contract : NextPage = () => {
         <div className="flex flex-wrap justify-between">
           <div className="mb-4 md:w-1/2 px-4">
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-              MG
+              Minimum Guarantee
             </label>
             <input value={contract.mg} onChange={handleChange} name="licensee" type="text" placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
