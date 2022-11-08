@@ -4,9 +4,11 @@ import "@/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <div className="flex h-screen overflow-hidden">
       <Navbar />
-      <Component {...pageProps} />
+      <div className="h-screen w-full p-8 overflow-auto">
+        <Component {...pageProps} />
+      </div>
     </div>
   );
 }
