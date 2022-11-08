@@ -1,22 +1,14 @@
-import {
-  Contract, 
-  ContractTypes,
-  ContractDealStatuses,
-  ContractStatuses,
-  DealTypes,
-} from '@/utils/interfaces';
 
 
-
-export const contractGeneric : Contract = {
-  contractType: ContractTypes.Sales,
+export const contractGeneric = {
+  contractType: 'sales',
   contractNumber: 'DA-366628',
   licensor: 'Paramount',
   licensee: 'YouTube',
-  dealStatus: ContractDealStatuses.Active,
-  status: ContractStatuses.Active,
-  dealType: DealTypes.Movie,
-  effectiveDate: new Date(),
+  dealStatus: 'active',
+  status: 'active',
+  dealType: 'movie',
+  effectiveDate: new Date().toLocaleString(),
   mg: '',
   currency: '',
   additonalTerms: '',
@@ -24,5 +16,5 @@ export const contractGeneric : Contract = {
 }
 
 
-export const contractsArr : Contract[] = Array(20).fill(contractGeneric);
+export const contractsArr = Array(20).fill(contractGeneric);
 
