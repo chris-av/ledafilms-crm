@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import Link from 'next/link';
 
 
@@ -24,12 +23,12 @@ interface ContractProps {
 export function Contracts({ contracts } : { contracts: ContractProps[] }) {
   console.log(contracts);
   return (
-    <div>
-      <h1>Contracts</h1>
-      <div className="flex flex-col justify-center items-center">
+    <div className="w-full">
+      <h1 className="text-center mb-8">Contracts</h1>
+      <div className="flex flex-col">
         { contracts.map((contract, i) => (
           <Link key={i} href={`/contracts/${contract.contractNumber}`}>
-            <a>{contract.contractNumber}</a>
+            <a className="my-4">{contract.contractNumber}</a>
           </Link>
         )) }
       </div>
@@ -40,10 +39,10 @@ export function Contracts({ contracts } : { contracts: ContractProps[] }) {
 
 
 export async function getServerSideProps() {
-  const result = await fetch("https://localhost:3000/api/contracts");
-  const contracts = await result.json();
+  const result = await fetch("http://localhost:3000/api/contracts");
+  const { data: contracts } = await result.json();
   return {
-    props: { contracts }
+    props: { contracts: contracts }
   }
 }
 
