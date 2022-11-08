@@ -1,36 +1,62 @@
-import { FunctionComponent } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { menuItems, MenuItemType, SubMenuType } from '@/data/navbar-menu.data';
 
 
 
 
-const Navbar: FunctionComponent = () => {
+export default function Navbar() {
 
   return (
-    <div className="h-20 bg-slate-900 flex justify-between items-center text-xl text-white">
+    <div className="w-[300px] h-screen bg-slate-100 float-left">
 
-      <div className="flex justify-center cursor-pointer items-center w-10 select-none">
+      <div className="relative select-none mb-8 w-[50px] h-[50px] ml-8 my-8">
         <Link href="/">
           <a>
-            <img className="h-10 mx-20" src="/ledafilms-icon-light.png" />
+            <Image 
+              src="/ledafilms-icon-dark.png" 
+              layout="fill"
+              objectFit="cover"
+            />
           </a>
         </Link>
       </div>
 
-      <nav className="flex items-center h-full">
-        <ul className="relative h-full flex justify-between items-center text-xl">
-          { menuItems.map(({ title, url, submenu }, index) => (
-            <MenuItems 
-              title={title} 
-              url={url} 
-              submenu={submenu} 
-              key={index} 
-              id={index}
-            />
-          )) }
+      <div className="flex h-full">
+        <ul className="w-full flex flex-col items-center text-xl">
+
+          <li className="flex items-center w-full h-[60px] pl-8">
+            <Link href="/titles">
+              <a>Titles</a>
+            </Link>
+          </li>
+
+          <li className="flex items-center w-full h-[60px] pl-8">
+            <Link href="/contracts">
+              <a>Contracts</a>
+            </Link>
+          </li>
+
+          <li className="flex items-center w-full h-[60px] pl-8">
+            <Link href="/reports">
+              <a>Reports</a>
+            </Link>
+          </li>
+
+          <li className="flex items-center w-full h-[60px] pl-8">
+            <Link href="/settings">
+              <a>Settings</a>
+            </Link>
+          </li>
+
+          <li className="flex items-center w-full h-[60px] pl-8">
+            <Link href="/login">
+              <a>Login</a>
+            </Link>
+          </li>
+
         </ul>
-      </nav>
+      </div>
 
     </div>
   );
@@ -38,47 +64,4 @@ const Navbar: FunctionComponent = () => {
 
 
 
-const MenuItems = ({ title, url, submenu } : MenuItemType) => {
-  return (
-    <div className="h-full w-36 flex items-center">
-      { submenu?.length > 0 ? (
-        <li className="group h-full w-[inherit] flex justify-center items-center text-center select-none">
-          <button type="button" aria-haspopup="menu">
-            { title }{' '}
-            <span>&#x25BC;</span>
-          </button>
-
-          <Dropdown submenu={submenu} />
-
-        </li>
-      ) : (
-        <li className="mx-8 select-none">
-          <Link href={url}>
-            <a>{title}</a>
-          </Link>
-        </li>
-      ) }
-    </div>
-  );
-}
-
-
-
-const Dropdown = ({ submenu } : SubMenuType) => {
-  return (
-    <ul className="absolute hidden group-hover:block top-full w-[inherit] text-sm origin-left rounded-md shadow-lg ring-1 bg-slate-900 py-1 px-3 focus:outline-none">
-      {submenu.map((item, index) => (
-        <li key={index} className="my-4 text-left">
-          <Link href={item.url}>
-            <a>{item.title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-
-
-export default Navbar;
 
