@@ -1,12 +1,6 @@
-import type { NextPage } from 'next';
-
-
-const Reports : NextPage = () => {
+export default function Reports () {
   return (
     <h1>Reports</h1>
   );
 }
-
-
-export default Reports;
 

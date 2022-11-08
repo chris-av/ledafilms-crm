@@ -1,12 +1,6 @@
-import type { NextPage } from 'next';
-
-
-const Settings : NextPage = () => {
+export default function Settings () {
   return (
     <h1>Settings</h1>
   );
 }
-
-
-export default Settings;
 

@@ -1,8 +1,7 @@
-import type { NextPage } from 'next';
 import Link from 'next/link';
 import LoginForm from '@/components/LoginForm';
 
-const Login : NextPage = () => {
+export default function Login() {
   return (
     <div>
       <h1 className="w-full text-center py-5">Login</h1>
@@ -15,7 +14,4 @@ const Login : NextPage = () => {
     </div>
   )
 }
-
-
-export default Login;
 

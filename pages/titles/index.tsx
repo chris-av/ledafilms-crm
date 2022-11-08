@@ -1,12 +1,7 @@
-import type { NextPage } from 'next';
-
-
-const Titles : NextPage = () => {
+export default function Titles() {
   return (
     <h1>Titles</h1>
   );
 }
 
-
-export default Titles;
 

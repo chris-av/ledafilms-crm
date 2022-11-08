@@ -1,8 +1,7 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 // import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div className="px-8 py-0">
       <Head>
@@ -26,4 +25,3 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home

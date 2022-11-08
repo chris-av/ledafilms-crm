@@ -1,7 +1,6 @@
-import type { NextPage } from 'next';
 import SignUpForm from '@/components/SignUpForm';
 
-const Login : NextPage = () => {
+export default function Login () {
   return (
     <div>
       <h1>Request to create account</h1>
@@ -9,7 +8,4 @@ const Login : NextPage = () => {
     </div>
   )
 }
-
-
-export default Login;
 
