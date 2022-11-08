@@ -23,19 +23,20 @@ export enum DealTypes {
   Skit = "skit",
 }
 
-export interface Contract {
-  contractType: ContractTypes,
-  contractNumber: string,
-  licensor: string,
-  licensee: string,
-  dealStatus: ContractDealStatuses,
-  status: ContractStatuses,
-  dealType: DealTypes,
-  effectiveDate: Date,
-  mg: string,
-  currency: string,
-  additonalTerms: string,
-  notes: string,
+export interface IContract {
+  territory: string,
+  right: string,
+  license_type: string,
+  start_date: string,
+  end_date: string,
+  start_confirmed: string,
+  end_confirmed: string,
+  unique_id: string,
+  contract_id: string,
 }
+
+
+
+export interface IContracts extends Array<IContract>{};
 
 
