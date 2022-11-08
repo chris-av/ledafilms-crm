@@ -9,7 +9,7 @@ In order to start the app, make sure to `npm install` all the dependencies first
 
 ### Environment Variables
 
-In order to connect to the database from a local environment, make sure to have the following local environment variables defined: 
+In order to connect to the database from a local environment, make sure to have the following local environment variables defined in a `.env.local` file: 
 
 ```
 # enter the value after the equal sign, no quotes
