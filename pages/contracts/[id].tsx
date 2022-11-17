@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { contractsArr } from '@/data/contract.prototype.data';
-import { Contract } from '@/utils/interfaces';
+import { IContract } from '@/utils/interfaces';
 
 
-const Contract : NextPage = () => {
+export default function Contract({ contract } : { contract: IContract }) {
   const router = useRouter();
   const { id: contractId } = router.query;
 
   // useEffect at some point to make an api call to get your data
-  const [ contract, setContract ] = useState<Contract>(contractsArr[0]);
+  const [ pageContract, setPageContract ] = useState<IContract>(contract);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,7 +17,7 @@ const Contract : NextPage = () => {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement|HTMLSelectElement>) => {
-    setContract(prev => {
+    setPageContract((prev : IContract) => {
       return {
         ...prev,
         [event.target.name]: event.target.value
@@ -39,7 +38,7 @@ const Contract : NextPage = () => {
               Contract Type
             </label>
             <div className="relative">
-              <select value={contract.contractType} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <select value={contract.contract_type} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option value="acquisition">Acquisition</option>
                 <option value="sales">Sales</option>
               </select>
@@ -52,7 +51,7 @@ const Contract : NextPage = () => {
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Contract #
             </label>
-            <input value={contract.contractNumber} onChange={handleChange} name="contractNumber" type="text" placeholder="Contract Number" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input value={contract.contract_id} onChange={handleChange} name="contractNumber" type="text" placeholder="Contract Number" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
         </div>
 
@@ -68,7 +67,7 @@ const Contract : NextPage = () => {
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Licensee
             </label>
-            <input name="licensee" type="text" value={contract.licensee} onChange={handleChange} placeholder="Effective Date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input name="licensee" type="text" value={contract.licensor} onChange={handleChange} placeholder="Effective Date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
         </div>
 
@@ -78,7 +77,7 @@ const Contract : NextPage = () => {
               Deal Status
             </label>
             <div className="relative">
-              <select value={contract.dealStatus} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <select value={contract.deal_status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
               </select>
@@ -110,7 +109,7 @@ const Contract : NextPage = () => {
               Deal Type
             </label>
             <div className="relative">
-              <select value={contract.dealStatus} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <select value={contract.deal_status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
               </select>
@@ -124,7 +123,7 @@ const Contract : NextPage = () => {
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Effective Date
             </label>
-            <input value={contract.effectiveDate.toLocaleString()} onChange={handleChange} name="licensee" type="text" placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input value={contract.creation_date} onChange={handleChange} name="licensee" type="text" placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
         </div>
 
@@ -141,7 +140,7 @@ const Contract : NextPage = () => {
               Currency
             </label>
             <div className="relative">
-              <select value={contract.currency} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <select value={contract.cur} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option>USD</option>
                 <option>Colones</option>
               </select>
@@ -182,6 +181,23 @@ const Contract : NextPage = () => {
 }
 
 
-export default Contract;
+export async function getServerSideProps({ query } : { query: { id: string, } }) {
+  try {
+    const { id: contract_id } = query
+    const response = await fetch(`http://localhost:3000/api/contracts/${contract_id}`);
+    const data = await response.json();
+
+    return {
+      props: { error: null, contract: data }
+    }
+
+  } catch (err) {
+    return {
+      props: { error: err, contract: null }
+    }
+  }
+}
+
+
 
 
