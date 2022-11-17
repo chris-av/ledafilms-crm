@@ -13,9 +13,6 @@ export default async function handler(
 ) {
 
   try {
-    // TODO: replace this with actual query result from database
-    // const result = await pool.query("SELECT * FROM contracts LIMIT 3;");
-    // res.status(200).json({ data: result.rows });
 
 
     res.status(200).json({ data: contractsArr });
