@@ -1,5 +1,4 @@
 import pool from '@/utils/pool';
-import { contractsArr } from '@/data/contract.prototype.data';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
