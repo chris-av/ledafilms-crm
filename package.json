@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "ts": "tsc --noemit --pretty --watch",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
