@@ -44,7 +44,9 @@ export function Contracts({ contracts } : { contracts: IContract[] }) {
                 </Link>
               </th>
               <th className="">
-                <a className="flex justify-center items-center w-full h-12">{distributor}</a>
+                <Link href={`/contracts/${contract_id}`}>
+                  <a className="flex justify-center items-center w-full h-12">{distributor}</a>
+                </Link>
               </th>
               <th className="">
                 <Link href={`/contracts/${contract_id}`}>
