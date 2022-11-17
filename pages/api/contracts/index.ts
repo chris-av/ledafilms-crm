@@ -12,9 +12,9 @@ export default async function handler(
 ) {
 
   try {
+    const result = await pool.query("SELECT * FROM contracts LIMIT 20;");
+    res.status(200).json({ data: result.rows });
 
-
-    res.status(200).json({ data: contractsArr });
 
   } catch (err: any) {
     res.status(400).json(err);
