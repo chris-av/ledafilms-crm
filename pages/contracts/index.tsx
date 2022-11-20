@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { IContract } from '@/utils/interfaces';
 import Link from 'next/link';
-import { parse } from 'path';
 
 
 
