@@ -11,14 +11,32 @@ export default async function handler(
   res: NextApiResponse<{ data: Data[] }>
 ) {
 
-  try {
+
+  const all_cols = [
+    'contract_id', 'status', 'licensor',
+    'distributor', 'mg'
+  ];
+
+  const foundCols = all_cols.filter(c => Object.keys(req.query).includes(c));
+
+
+  if (foundCols.length == 0) {
     const result = await pool.query("SELECT * FROM contracts LIMIT 20;");
     res.status(200).json({ data: result.rows });
-
-
-  } catch (err: any) {
-    res.status(400).json(err);
+    return;
   }
+
+
+  const query = [
+    "SELECT * FROM contracts WHERE",
+    foundCols.map((c, i) => `${c} = $${i+1}`).join(' AND ')
+  ].join(' ');
+  const result = await pool.query(query, foundCols);
+  console.log({ query, foundCols });
+  res.status(200).json({ data: result.rows });
+
+
+
 
 }
 
