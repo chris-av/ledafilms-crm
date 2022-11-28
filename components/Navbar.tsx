@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { menuItems, MenuItemType, SubMenuType } from '@/data/navbar-menu.data';
 
 
 
