@@ -1,16 +1,22 @@
 import type { AppProps } from 'next/app'
 import Navbar from '@/components/Navbar';
+import Topbar from '@/components/Topbar';
 import "@/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="flex h-screen overflow-hidden">
-      <Navbar />
-      <div className="h-screen w-full p-8 overflow-auto">
-        <Component {...pageProps} />
+    <div className="h-screen w-full overflow-hidden">
+      <Topbar theme="basic" />
+      <div className="flex">
+        <Navbar />
+        <div className="w-full p-8 h-screen overflow-auto">
+          <Component {...pageProps} />
+        </div>
       </div>
     </div>
   );
 }
 
+
 export default MyApp
+
