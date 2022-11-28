@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { menuItems, MenuItemType, SubMenuType } from '@/data/navbar-menu.data';
@@ -7,23 +8,14 @@ import { menuItems, MenuItemType, SubMenuType } from '@/data/navbar-menu.data';
 
 export default function Navbar() {
 
+  const [ toggleLight, setToggle ] = useState(false);
+  console.log(toggleLight);
+
   return (
     <div className="w-[300px] h-screen bg-slate-100 float-left">
 
-      <div className="relative select-none mb-8 w-[50px] h-[50px] ml-8 my-8">
-        <Link href="/">
-          <a>
-            <Image 
-              src="/ledafilms-icon-dark.png" 
-              layout="fill"
-              objectFit="cover"
-            />
-          </a>
-        </Link>
-      </div>
-
-      <div className="flex h-full">
-        <ul className="w-full flex flex-col items-center text-xl">
+      <div className="flex flex-col h-[85%]">
+        <ul className="w-full flex flex-col items-center text-xl h-[50%]">
 
           <li className="flex items-center w-full h-[60px] pl-8">
             <Link href="/titles">
@@ -56,6 +48,27 @@ export default function Navbar() {
           </li>
 
         </ul>
+
+        <div className="w-full border-[black] border-t"></div>
+
+        <ul className="w-full flex flex-col items-center text-xl">
+
+          <li className="flex items-center w-full h-[60px] pl-8">
+            <Link href="/titles">
+              <a>Dashboards</a>
+            </Link>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div className="cursor-pointer">
+        <label htmlFor="checkbox" onClick={() => setToggle(prev => !prev) } style={{ backgroundColor: toggleLight ? "#F9FCD1" : "black" }} className="relative max-w-[60px] mx-auto bg-[black] flex justify-between items-center px-2 h-[35px] rounded-xl transition-all">
+          <SunIcon color="#CCD924" />
+          <MoonIcon color="white" />
+          <div style={{ backgroundColor: toggleLight ? "#E2BFBF" : "white", transform: toggleLight ? "translateX(80%)" : "translateX(0)"  }} className="absolute cursor-pointer w-[24px] h-[24px] rounded-[50%] transition-transform ease-lineari duration-300"></div>
+        </label>
       </div>
 
     </div>
@@ -63,5 +76,20 @@ export default function Navbar() {
 }
 
 
+function SunIcon({ color } : { color: string }) {
+  return (
+    <svg style={{ color }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+      <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+    </svg>
+  );
+}
+
+function MoonIcon({ color } : { color: string }) {
+  return (
+    <svg style={{ color }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-moon-fill" viewBox="0 0 16 16">
+      <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+    </svg>
+  );
+}
 
 
