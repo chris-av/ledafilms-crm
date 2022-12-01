@@ -10,7 +10,7 @@ export default function Navbar() {
   console.log(toggleLight);
 
   return (
-    <div className="w-[300px] h-screen bg-slate-100 float-left">
+    <div className="w-[300px] h-full bg-slate-100 float-left">
 
       <div className="flex flex-col h-[85%]">
         <ul className="w-full flex flex-col items-center text-xl h-[50%]">
