@@ -7,6 +7,7 @@ console.log({
   user: process.env.PG_USER,
   password: process.env.PG_PW,
   database: process.env.PG_DB,
+  port: process.env.PG_PORT,
 });
 console.log('');
 console.log('');
@@ -14,9 +15,9 @@ console.log('');
 const pool = new Pool({
   host: process.env.PG_HOST,
   user: process.env.PG_USER,
-  password: process.env.PG_PW,
+  password: process.env.PG_PW ? process.env.PG_PW : undefined,
   database: process.env.PG_DB,
-  port: 5439,
+  port: process.env.PG_PORT ? parseInt(process.env.PG_PORT) : undefined,
   ssl: false
 });
 
