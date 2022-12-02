@@ -1,5 +1,5 @@
 import Models from '@/db/models';
-const { Contract } = Models;
+const { OpenWindow } = Models;
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 
@@ -8,10 +8,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { id: contract_id } = req.query;
-    const result = await Contract.findOne({
+    const { id: unique_id } = req.query;
+    const result = await OpenWindow.findOne({
       where: {
-        contract_id
+        unique_id
       }
     });
     res.status(200).json({ data: result });

@@ -1,6 +1,6 @@
 import Models from '@/db/models';
-const { Contract } = Models;
-import type { NextApiRequest, NextApiResponse } from 'next';
+const { Title } = Models;
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 
 export default async function handler(
@@ -8,12 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { id: contract_id } = req.query;
-    const result = await Contract.findOne({
-      where: {
-        contract_id
-      }
-    });
+    const result = await Title.findAll();
     res.status(200).json({ data: result });
   } catch (err: any) {
     res.status(400).json(err);

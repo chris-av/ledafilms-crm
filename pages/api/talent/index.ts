@@ -1,24 +1,17 @@
-import pool from '@/utils/pool';
-import { ITalent } from '@/utils/interfaces';
+import Models from '@/db/models';
+const { Talent } = Models;
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-type Data = {
-  name: string
-}
 
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<{ data: ITalent[] }>
+  res: NextApiResponse
 ) {
-
   try {
-    const result = await pool.query("SELECT * FROM talent LIMIT 100;");
-    const talent : ITalent[] = result.rows;
-    res.status(200).json({ data: talent });
+    const result = await Talent.findAll();
+    res.status(200).json({ data: result });
   } catch (err: any) {
     res.status(400).json(err);
   }
-
 }
 
