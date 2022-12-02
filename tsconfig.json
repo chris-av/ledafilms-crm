@@ -17,6 +17,7 @@
     "incremental": true,
     "paths": {
       "@/components/*": [ "components/*" ],
+      "@/db/*": [ "db/*" ],
       "@/pages/*": [ "pages/*" ],
       "@/styles/*": [ "styles/*" ],
       "@/hooks/*": [ "hooks/*" ],
