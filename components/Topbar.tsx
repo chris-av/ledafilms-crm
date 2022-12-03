@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { testUser } from '@/data/user.data';
+import SearchIcon from '@/components/icons/MagnifyingGlass';
 
 
 export default function Topbar({ theme } : { theme: string }) {
@@ -28,7 +29,7 @@ export default function Topbar({ theme } : { theme: string }) {
 
 
       <div className="ml-16 w-full max-w-[40%] flex items-center bg-[white] rounded-md p-1 text-sm">
-        <SearchIcon />
+        <SearchIcon width={16} height={16} />
         <input
           type="text" placeholder="Search" value={search} onChange={handleSearch}
           className="w-full rounded-md px-4 border-none outline-none"
@@ -43,14 +44,4 @@ export default function Topbar({ theme } : { theme: string }) {
   );
 }
 
-
-
-
-function SearchIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-    </svg>
-  );
-}
 

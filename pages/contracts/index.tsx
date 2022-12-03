@@ -93,32 +93,32 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
           <div className="flex items-center w-full px-3">
             <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">ID</label>
-            <div className="w-1/12 text-center bg-gray-200 py-3 mx-2 mb-3 rounded">M</div>
-            <input value={idFilter} onChange={handleChange} name="contract-id" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract ID"/>
+            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
+            <input value={idFilter} onChange={handleChange} name="contract-id" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract ID"/>
           </div>
 
           <div className="flex items-center w-full px-3">
             <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Status</label>
-            <div className="w-1/12 text-center bg-gray-200 py-3 mx-2 mb-3 rounded">M</div>
-            <input value={statusFilter} onChange={handleChange} name="contract-status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
+            <input value={statusFilter} onChange={handleChange} name="contract-status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
           </div>
 
           <div className="flex items-center w-full px-3">
             <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Licensor</label>
-            <div className="w-1/12 text-center bg-gray-200 py-3 mx-2 mb-3 rounded">M</div>
-            <input value={licensorFilter} onChange={handleChange} name="licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
+            <input value={licensorFilter} onChange={handleChange} name="licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
           </div>
 
           <div className="flex items-center w-full px-3">
             <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Distributor</label>
-            <div className="w-1/12 text-center bg-gray-200 py-3 mx-2 mb-3 rounded">M</div>
-            <input value={distributorFilter} onChange={handleChange} name="distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
+            <input value={distributorFilter} onChange={handleChange} name="distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
           </div>
 
           <div className="flex items-center w-full px-3">
             <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Amount</label>
-            <div className="w-1/12 text-center bg-gray-200 py-3 mx-2 mb-3 rounded">M</div>
-            <input value={amountFilter} onChange={handleChange} name="amount" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
+            <input value={amountFilter} onChange={handleChange} name="amount" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
           </div>
 
         </div>
