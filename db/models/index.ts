@@ -1,4 +1,4 @@
-const env = process.env.NODE_ENV || 'developtment';
+const env = process.env.NODE_ENV || 'development';
 import config_opts from '@/db/config/config';
 
 // select config based on environment
@@ -6,24 +6,30 @@ const config = config_opts[env]
 
 
 import { DataTypes } from 'sequelize';
-import Sequelize from 'sequelize';
+import { Sequelize } from 'sequelize';
 
 import Contract from './contract';
 import OpenWindow from './openwindow';
 import Talent from './talent';
 import Title from './title';
 
-console.log('config');
-console.log(config);
+console.log('using config');
+console.log({ env, config });
+console.log('');
+console.log('');
 
 
 // initialize sequelize with config
-let sequelize : any;
-if (config?.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+let sequelize = new Sequelize({
+  database: config.database || '',
+  username: config.username || '',
+  password: config.password || undefined,
+  port: config.port,
+  host: config.host,
+  dialect: 'postgres',
+  quoteIdentifiers: false,
+});
+
 
 
 
