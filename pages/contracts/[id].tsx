@@ -183,7 +183,7 @@ export default function Contract({ contract } : { contract: IContract }) {
 
 export async function getServerSideProps({ query } : { query: { id: string, } }) {
   try {
-    const { id: contract_id } = query
+    const { id: contract_id } = query;
     const response = await api.getContract(contract_id);
     const data = await response;
 
