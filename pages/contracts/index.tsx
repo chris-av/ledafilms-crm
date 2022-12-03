@@ -46,6 +46,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   }
 
+  // TODO: make POST request to database to update record
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
