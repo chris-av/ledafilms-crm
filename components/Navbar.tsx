@@ -7,7 +7,6 @@ import Link from 'next/link';
 export default function Navbar() {
 
   const [ toggleLight, setToggle ] = useState(false);
-  console.log(toggleLight);
 
   return (
     <div className="w-[300px] h-full bg-slate-100 float-left">
