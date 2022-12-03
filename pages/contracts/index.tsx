@@ -68,14 +68,6 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
       const requestUrl = "/api/contracts/" + new URLSearchParams(filters);
       console.log({ requestUrl });
 
-      // const response = await fetch(requestUrl);
-      //
-      // if (response.status === 200) {
-      //   const dta = await response.json();
-      //   setContracts(dta);
-      // }
-
-
     }
 
     makeRequest();
