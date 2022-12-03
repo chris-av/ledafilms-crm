@@ -77,7 +77,6 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
   }
 
 
-  console.log({ contracts });
 
   return (
     <div className="w-full">
