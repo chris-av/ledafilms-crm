@@ -1,5 +1,3 @@
-'use strict';
-
 import { Model, InferAttributes, InferCreationAttributes } from 'sequelize';
 
 class Talent extends Model<InferAttributes<Talent>, InferCreationAttributes<Talent>> {

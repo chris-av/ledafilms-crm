@@ -1,7 +1,5 @@
-'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
+export default {
   async up (queryInterface : any, Sequelize : any) {
     /**
      * Add seed commands here.
@@ -37,6 +35,4 @@ module.exports = {
      */
   }
 };
-
-export {}
 

@@ -1,6 +1,5 @@
-'use strict';
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
+export default {
   async up(queryInterface : any, Sequelize : any) {
     await queryInterface.createTable('open_windows', {
       // id: {
@@ -53,3 +52,4 @@ module.exports = {
     await queryInterface.dropTable('open_windows');
   }
 };
+

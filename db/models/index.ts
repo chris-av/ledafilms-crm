@@ -1,5 +1,3 @@
-'use strict';
-
 const env = process.env.NODE_ENV || 'developtment';
 import config_opts from '@/db/config/config';
 
