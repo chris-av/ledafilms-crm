@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { IContract } from '@/utils/interfaces';
+import api from '@/utils/api';
 
 
 export default function Contract({ contract } : { contract: IContract }) {
@@ -183,8 +184,8 @@ export default function Contract({ contract } : { contract: IContract }) {
 export async function getServerSideProps({ query } : { query: { id: string, } }) {
   try {
     const { id: contract_id } = query
-    const response = await fetch(`http://localhost:3000/api/contracts/${contract_id}`);
-    const data = await response.json();
+    const response = await api.getContract(contract_id);
+    const data = await response;
 
     return {
       props: { error: null, contract: data }
