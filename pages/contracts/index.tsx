@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IContract } from '@/utils/interfaces';
 import Link from 'next/link';
+import api from '@/utils/api';
 
 
 
@@ -184,8 +185,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
 
 export async function getServerSideProps() {
-  const result = await fetch("http://localhost:3000/api/contracts");
-  const { data: contracts } = await result.json();
+  const contracts = await api.getContracts();
   return {
     props: { _contracts: contracts }
   }
