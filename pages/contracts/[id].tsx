@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { contractsArr } from '@/data/contract.prototype.data';
 import { IContract } from '@/utils/interfaces';
 
 
