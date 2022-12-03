@@ -65,7 +65,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
       if (distributorFilter) filters.distributor = distributorFilter;
       if (amountFilter) filters.mg = amountFilter;
 
-      const requestUrl = "http://localhost:3000/api/contracts/" + new URLSearchParams(filters);
+      const requestUrl = "/api/contracts/" + new URLSearchParams(filters);
       console.log({ requestUrl });
 
       // const response = await fetch(requestUrl);
