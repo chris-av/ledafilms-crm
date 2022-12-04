@@ -2,17 +2,65 @@ import { useState, useEffect } from 'react';
 import { IContract } from '@/utils/interfaces';
 import Link from 'next/link';
 import api from '@/utils/api';
+import Dropdown from '@/components/Dropdown';
 
 
 
 export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
-  const [ contracts, setContracts ] = useState(_contracts);
-  const [ idFilter, setIdFilter ] = useState('');
-  const [ statusFilter, setStatusFilter ] = useState('');
-  const [ licensorFilter, setLicensorFilter ] = useState('');
-  const [ distributorFilter, setDistributorFilter ] = useState('');
-  const [ amountFilter, setAmountFilter ] = useState('');
+  const contracts = _contracts;
+
+  const [ filter, setFilter ] = useState({
+    title: {
+      type: 'any',
+      searchTerm: '',
+    },
+    contractId: {
+      type: 'any',
+      searchTerm: '',
+    },
+    licensor: {
+      searchTerm: '',
+    },
+    distributor: {
+      searchTerm: '',
+    },
+    territory: {
+      searchTerm: '',
+    },
+    right: {
+      searchTerm: '',
+    },
+    contractStatus: {
+      type: 'any',
+    },
+    dealStatus: {
+      type: 'any',
+    },
+    productionStatus: {
+      type: 'any',
+    },
+  });
+
+  const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+
+    const filterName = event.target.name;
+    interface filterType {
+      type?: string,
+      searchTerm?: string,
+    }
+
+    setFilter(prev => {
+      return {
+        ...prev,
+        [filterName]: {
+          ...prev[filterName],
+          searchTerm: [event.target.value],
+        }
+      }
+    });
+  }
+
 
   const formatAmount = (amount: number, currency: string) : string => {
     const formatter = new Intl.NumberFormat('en-US', {
@@ -22,53 +70,16 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
     return formatter.format(amount);
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.name === 'contract-id') {
-      setIdFilter(event.target.value);
-    }
-
-    if (event.target.name === 'contract-status') {
-      setStatusFilter(event.target.value);
-    }
-
-    if (event.target.name === 'licensor') {
-      setLicensorFilter(event.target.value);
-    }
-
-    if (event.target.name === 'distributor') {
-      setDistributorFilter(event.target.value);
-    }
-
-    if (event.target.name === 'amount') {
-      setAmountFilter(event.target.value);
-    }
-    
-    return;
-
-  }
 
   // TODO: make POST request to database to update record
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const makeRequest = async () => {
-      let filters : {
-        contract_id?: string,
-        status?: string,
-        licensor?: string,
-        distributor?: string,
-        mg?: string,
-      } = {};
 
-
-      if (idFilter) filters.contract_id = idFilter;
-      if (statusFilter) filters.status = statusFilter;
-      if (licensorFilter) filters.status = licensorFilter;
-      if (distributorFilter) filters.distributor = distributorFilter;
-      if (amountFilter) filters.mg = amountFilter;
-
-      const requestUrl = "/api/contracts/" + new URLSearchParams(filters);
-      console.log({ requestUrl });
+      // const requestUrl = "/api/contracts/" + new URLSearchParams(filter);
+      // console.log({ requestUrl });
+      return;
 
     }
 
@@ -78,47 +89,91 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   }
 
-
-
   return (
     <div className="w-full">
       <h1 className="text-center mb-8">Contracts</h1>
 
       {/* implement search */}
-      <form onSubmit={handleSubmit} className="bg-pink-50 w-full my-10 shadow-md rounded px-8 mb-4">
+      <form onSubmit={handleSubmit} className="bg-pink-50 w-full my-10 py-4 shadow-md rounded px-8 mb-4">
 
         <h2 className="text-center mb-8">Contract filter</h2>
 
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="grid grid-rows-6 grid-flow-col auto-cols-[60%_40%] mx-3 mb-6">
 
-          <div className="flex items-center w-full px-3">
-            <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">ID</label>
-            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
-            <input value={idFilter} onChange={handleChange} name="contract-id" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract ID"/>
+          <div className="flex items-center px-3 py-1">
+            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
+            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">M</div>
+            <input onChange={handleChange} name="contract-id" type="text" placeholder="Contract Title" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
-          <div className="flex items-center w-full px-3">
-            <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Status</label>
-            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
-            <input value={statusFilter} onChange={handleChange} name="contract-status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+          <div className="flex items-center px-3">
+            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
+            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">M</div>
+            <input onChange={handleChange} name="contract-id" type="text" placeholder="Contract ID" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
-          <div className="flex items-center w-full px-3">
-            <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Licensor</label>
-            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
-            <input value={licensorFilter} onChange={handleChange} name="licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+          <div className="flex items-center px-3">
+            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Licensor</label>
+            <input onChange={handleChange} name="licensor" type="text" placeholder="Licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
-          <div className="flex items-center w-full px-3">
-            <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Distributor</label>
-            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
-            <input value={distributorFilter} onChange={handleChange} name="distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+          <div className="flex items-center px-3">
+            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Distributor</label>
+            <input onChange={handleChange} name="distributor" type="text" placeholder="Contract Status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
-          <div className="flex items-center w-full px-3">
-            <label className="w-2/12 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Amount</label>
-            <div className="w-1/12 text-center bg-gray-200 py-1 mx-2 mb-3 rounded">M</div>
-            <input value={amountFilter} onChange={handleChange} name="amount" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-contract-id" type="text" placeholder="Contract Status"/>
+          <div className="flex items-center px-3">
+            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Territory</label>
+            <input onChange={handleChange} name="territory" type="text" placeholder="Contract Status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+          </div>
+
+          <div className="flex items-center px-3">
+            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Right</label>
+            <input onChange={handleChange} name="distributor" type="text" placeholder="Contract Status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+          </div>
+
+
+
+          <div className="flex items-center px-8">
+            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Contract Status</label>
+            <div className="w-1/3">
+              <Dropdown
+                options={[
+                  { label: 'Normal', value: 'Normal' },
+                  { label: 'Cancelled', value: 'Cancelled' },
+                  { label: 'Internal', value: 'Internal' },
+                ]}
+                callback={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center px-8">
+            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Status</label>
+            <div className="w-1/3">
+              <Dropdown
+                options={[
+                  { label: 'Normal', value: 'Normal' },
+                  { label: 'Cancelled', value: 'Cancelled' },
+                  { label: 'Internal', value: 'Internal' },
+                ]}
+                callback={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center px-8">
+            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Production Status</label>
+            <div className="w-1/3">
+              <Dropdown
+                options={[
+                  { label: 'Normal', value: 'Normal' },
+                  { label: 'Cancelled', value: 'Cancelled' },
+                  { label: 'Internal', value: 'Internal' },
+                ]}
+                callback={handleChange}
+              />
+            </div>
           </div>
 
         </div>
