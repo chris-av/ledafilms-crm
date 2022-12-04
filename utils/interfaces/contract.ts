@@ -37,16 +37,6 @@ export interface IContract {
   additional_terms: any,
   notes: string,
   contract_id: string,
-
-  // territory: string,
-  // right: string,
-  // license_type: string,
-  // start_date: string,
-  // end_date: string,
-  // start_confirmed: string,
-  // end_confirmed: string,
-  // unique_id: string,
-
 }
 
 
