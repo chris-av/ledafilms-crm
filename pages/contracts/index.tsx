@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {
   IContract, ContractFilter,
-  // validTitleTypeOpts, validContractTypeOpts,
+  validTitleTypeOpts, validContractTypeOpts,
   validContractStatusOpts, validDealStatusOpts,
   validProductionStatusOpts, validDealTypeOpts
 } from '@/utils/interfaces';
@@ -65,7 +65,6 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   }
 
-  const selectContractStatus = (status : validContractStatusOpts) => {
   const selectTitleType = (selection : validTitleTypeOpts) => {
     setFilter((prev) : ContractFilter => {
       return {
@@ -90,48 +89,49 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
     });
   }
 
+  const selectContractStatus = (selection : validContractStatusOpts) => {
     setFilter((prev) : ContractFilter => {
       return {
         ...prev,
         contractStatus: {
           ...prev.contractStatus,
-          search: status,
+          search: selection,
         }
       }
     });
   }
 
-  const selectDealStatus = (status : validDealStatusOpts) => {
+  const selectDealStatus = (selection : validDealStatusOpts) => {
     setFilter((prev) : ContractFilter => {
       return {
         ...prev,
         dealStatus: {
           ...prev.dealStatus,
-          search: status,
+          search: selection,
         }
       }
     });
   }
 
-  const selectProductionStatus = (status : validProductionStatusOpts) => {
+  const selectProductionStatus = (selection : validProductionStatusOpts) => {
     setFilter((prev) : ContractFilter => {
       return {
         ...prev,
         productionStatus: {
           ...prev.productionStatus,
-          search: status,
+          search: selection,
         }
       }
     });
   }
 
-  const selectDealType = (status : validDealTypeOpts) => {
+  const selectDealType = (selection : validDealTypeOpts) => {
     setFilter((prev) : ContractFilter => {
       return {
         ...prev,
         dealType: {
           ...prev.dealType,
-          search: status,
+          search: selection,
         }
       }
     });
@@ -152,34 +152,95 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
           <div className="flex items-center px-3 py-1">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
-            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">M</div>
-            <input onChange={handleChange} id="title" name="search" type="text" placeholder="Contract Title" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">
+              <Dropdown
+                options={[
+                  { label: '(any)', value: 'any' },
+                  { label: 'Film', value: 'Film' },
+                  { label: 'Series', value: 'Series' },
+                  { label: 'Mini-Series', value: 'Mini-Series' },
+                  { label: 'Format', value: 'Format' },
+                  { label: 'Seasons', value: 'Seasons' },
+                  { label: 'Episodes', value: 'Episodes' },
+                ]}
+                callback={selectTitleType}
+              />
+            </div>
+            <input 
+              onChange={handleChange} 
+              id="title" 
+              name="search" 
+              type="text" 
+              placeholder="Contract Title" 
+              className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
-            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">M</div>
-            <input onChange={handleChange} id="contractId" name="search" placeholder="Contract ID" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">
+              <Dropdown
+                options={[
+                  { label: '(any)', value: 'any' },
+                  { label: 'Sales', value: 'Sales' },
+                  { label: 'Acquisition', value: 'Acquisition' },
+                ]}
+                callback={selectContractType}
+              />
+            </div>
+            <input 
+              onChange={handleChange} 
+              id="contractId" 
+              name="search" 
+              placeholder="Contract ID" 
+              className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Licensor</label>
-            <input onChange={handleChange} id="licensor" name="search" placeholder="Licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input 
+              onChange={handleChange} 
+              id="licensor" 
+              name="search" 
+              placeholder="Licensor" 
+              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Distributor</label>
-            <input onChange={handleChange} id="distributor" name="search" placeholder="Contract Distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input 
+              onChange={handleChange} 
+              id="distributor" 
+              name="search" 
+              placeholder="Contract Distributor" 
+              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Territory</label>
-            <input onChange={handleChange} id="territory" name="search" type="text" placeholder="Territory" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input 
+              onChange={handleChange} 
+              id="territory" 
+              name="search" 
+              type="text" 
+              placeholder="Territory" 
+              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Right</label>
-            <input onChange={handleChange} id="right" name="search" type="text" placeholder="Right" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input 
+              onChange={handleChange} 
+              id="right" 
+              name="search" 
+              type="text" 
+              placeholder="Right" 
+              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            />
           </div>
 
 
