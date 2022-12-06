@@ -1,7 +1,9 @@
-export const filterState = {
+import { ContractFilter } from '@/utils/interfaces';
+
+export const filterState : ContractFilter = {
   titleType: {
     operator: '=',
-    search: '',
+    search: 'Film',
   },
   title: {
     operator: '~',
@@ -9,7 +11,7 @@ export const filterState = {
   },
   contractType: {
     operator: '=',
-    search: '',
+    search: 'Sales',
   },
   contractId: {
     operator: '~',
@@ -33,14 +35,14 @@ export const filterState = {
   },
   contractStatus: {
     operator: '=',
-    search: '',
+    search: 'Long Form Executed',
   },
   dealStatus: {
     operator: '=',
-    search: '',
+    search: 'Normal',
   },
   productionStatus: {
     operator: '=',
-    search: '',
+    search: 'Normal',
   },
 }
