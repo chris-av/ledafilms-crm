@@ -17,7 +17,7 @@ export default function Dropdown({ options, callback } : ComponentProps) {
       <div className="relative">
         <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none focus:border-gray-400">
           { options.map(({ label, value }) => (
-            <option value={value}>{label}</option>
+            <option key={value} value={value}>{label}</option>
           )) }
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
