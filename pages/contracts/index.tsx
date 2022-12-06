@@ -246,8 +246,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
 
           <div className="flex items-center px-8">
-            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Contract Status</label>
-            <div className="w-1/3">
+            <label className="w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Contract Status</label>
+            <div className="w-6/12">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -261,8 +261,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
           </div>
 
           <div className="flex items-center px-8">
-            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Status</label>
-            <div className="w-1/3">
+            <label className="w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Status</label>
+            <div className="w-6/12">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -278,8 +278,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
           </div>
 
           <div className="flex items-center px-8">
-            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Production Status</label>
-            <div className="w-1/3">
+            <label className="w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Production Status</label>
+            <div className="w-6/12">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -296,8 +296,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
           </div>
 
           <div className="flex items-center px-8">
-            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Type</label>
-            <div className="w-1/3">
+            <label className="w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Type</label>
+            <div className="w-6/12">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
