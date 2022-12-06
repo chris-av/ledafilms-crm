@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { IContract, ContractFilter } from '@/utils/interfaces';
+import {
+  IContract, ContractFilter,
+  // validTitleTypeOpts, validContractTypeOpts,
+  validContractStatusOpts, validDealStatusOpts,
+  validProductionStatusOpts, validDealTypeOpts
+} from '@/utils/interfaces';
 import { filterState } from '@/data/filter-state.data';
 import Link from 'next/link';
 import api from '@/utils/api';
@@ -60,6 +65,54 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   }
 
+  const selectContractStatus = (status : validContractStatusOpts) => {
+    setFilter((prev) : ContractFilter => {
+      return {
+        ...prev,
+        contractStatus: {
+          ...prev.contractStatus,
+          search: status,
+        }
+      }
+    });
+  }
+
+  const selectDealStatus = (status : validDealStatusOpts) => {
+    setFilter((prev) : ContractFilter => {
+      return {
+        ...prev,
+        dealStatus: {
+          ...prev.dealStatus,
+          search: status,
+        }
+      }
+    });
+  }
+
+  const selectProductionStatus = (status : validProductionStatusOpts) => {
+    setFilter((prev) : ContractFilter => {
+      return {
+        ...prev,
+        productionStatus: {
+          ...prev.productionStatus,
+          search: status,
+        }
+      }
+    });
+  }
+
+  const selectDealType = (status : validDealTypeOpts) => {
+    setFilter((prev) : ContractFilter => {
+      return {
+        ...prev,
+        dealType: {
+          ...prev.dealType,
+          search: status,
+        }
+      }
+    });
+  }
+
   console.log({ filter });
 
   return (
@@ -112,11 +165,12 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <div className="w-1/3">
               <Dropdown
                 options={[
+                  { label: '(any)', value: 'any' },
                   { label: 'Normal', value: 'Normal' },
                   { label: 'Cancelled', value: 'Cancelled' },
                   { label: 'Internal', value: 'Internal' },
                 ]}
-                callback={handleChange}
+                callback={selectContractStatus}
               />
             </div>
           </div>
@@ -126,11 +180,14 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <div className="w-1/3">
               <Dropdown
                 options={[
-                  { label: 'Normal', value: 'Normal' },
+                  { label: '(any)', value: 'any' },
+                  { label: 'Long Form Executed', value: 'Long Form Executed' },
+                  { label: 'In Negotiation', value: 'In Negotiation' },
+                  { label: 'Deal Memo Executed', value: 'Deal Memo Executed' },
                   { label: 'Cancelled', value: 'Cancelled' },
-                  { label: 'Internal', value: 'Internal' },
+                  { label: 'Awaiting Signature', value: 'Awaiting Signature' },
                 ]}
-                callback={handleChange}
+                callback={selectDealStatus}
               />
             </div>
           </div>
@@ -140,11 +197,30 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <div className="w-1/3">
               <Dropdown
                 options={[
-                  { label: 'Normal', value: 'Normal' },
-                  { label: 'Cancelled', value: 'Cancelled' },
-                  { label: 'Internal', value: 'Internal' },
+                  { label: '(any)', value: 'any' },
+                  { label: 'Completed', value: 'Completed' },
+                  { label: 'Pre-Production', value: 'Pre-Production' },
+                  { label: 'Post-Production', value: 'Post-Production' },
+                  { label: 'Production', value: 'Production' },
+                  { label: 'Development', value: 'Development' },
+                  { label: 'Catalog', value: 'Catalog' },
                 ]}
-                callback={handleChange}
+                callback={selectProductionStatus}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center px-8">
+            <label className="w-2/3 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Type</label>
+            <div className="w-1/3">
+              <Dropdown
+                options={[
+                  { label: '(any)', value: 'any' },
+                  { label: 'Acquired Content', value: 'Acquired Content' },
+                  { label: 'Representation Only', value: 'Representation Only' },
+                  { label: 'Producted Content', value: 'Producted Content' },
+                ]}
+                callback={selectDealType}
               />
             </div>
           </div>
