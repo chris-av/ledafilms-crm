@@ -1,51 +1,56 @@
 interface FilterOperators {
-  operator: string,
+  operator: validOperators,
   search: string,
 }
 
+type validOperators = '=' | '!=' | '~' |
+  '<' | '<=' | 
+  '>' | '>=';
+
+
 export interface ContractFilter {
   titleType: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   title: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   contractType: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   contractId: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   licensor: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   distributor: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   territory: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   right: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   contractStatus: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   dealStatus: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
   productionStatus: {
-    operator: string,
+    operator: validOperators,
     search: string,
   },
 }
