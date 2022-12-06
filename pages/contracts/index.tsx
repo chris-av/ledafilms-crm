@@ -119,17 +119,17 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Distributor</label>
-            <input onChange={handleChange} name="distributor" type="text" placeholder="Contract Status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} name="distributor" type="text" placeholder="Contract Distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Territory</label>
-            <input onChange={handleChange} name="territory" type="text" placeholder="Contract Status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} name="territory" type="text" placeholder="Territory" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Right</label>
-            <input onChange={handleChange} name="distributor" type="text" placeholder="Contract Status" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} name="distributor" type="text" placeholder="Right" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
 
