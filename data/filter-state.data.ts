@@ -3,7 +3,7 @@ import { ContractFilter } from '@/utils/interfaces';
 export const filterState : ContractFilter = {
   titleType: {
     operator: '=',
-    search: 'Film',
+    search: 'any',
   },
   title: {
     operator: '~',
@@ -11,7 +11,7 @@ export const filterState : ContractFilter = {
   },
   contractType: {
     operator: '=',
-    search: 'Sales',
+    search: 'any',
   },
   contractId: {
     operator: '~',
@@ -35,14 +35,18 @@ export const filterState : ContractFilter = {
   },
   contractStatus: {
     operator: '=',
-    search: 'Long Form Executed',
+    search: 'any',
   },
   dealStatus: {
     operator: '=',
-    search: 'Normal',
+    search: 'any',
   },
   productionStatus: {
     operator: '=',
-    search: 'Normal',
+    search: 'any',
   },
+  dealType: {
+    operator: '=',
+    search: 'any'
+  }
 }
