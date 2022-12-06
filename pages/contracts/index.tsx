@@ -16,15 +16,17 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
 
     type filterTypes = "titleType" | "title" | "contractType" | "contractId" | "licensor" | "distributor" | "territory" | "right" | "contractStatus" | "dealStatus" | "productionStatus" ;
+    type operatorTypes = "operator" | "search";
 
-    let filterName = event.target.value as filterTypes;
+    const filterName = event.target.id as filterTypes;
+    const operatorName = event.target.name as operatorTypes;
 
     setFilter((prev) : ContractFilter => {
       return {
         ...prev,
         [filterName]: {
           ...prev[filterName],
-          search: [event.target.value],
+          [operatorName]: event.target.value,
         }
       } as ContractFilter
     });
@@ -58,6 +60,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   }
 
+  console.log({ filter });
+
   return (
     <div className="w-full">
       <h1 className="text-center mb-8">Contracts</h1>
@@ -72,33 +76,33 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
           <div className="flex items-center px-3 py-1">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
             <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">M</div>
-            <input onChange={handleChange} name="contract-id" type="text" placeholder="Contract Title" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} id="title" name="search" type="text" placeholder="Contract Title" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
             <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">M</div>
-            <input onChange={handleChange} name="contract-id" type="text" placeholder="Contract ID" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} id="contractId" name="search" placeholder="Contract ID" className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Licensor</label>
-            <input onChange={handleChange} name="licensor" type="text" placeholder="Licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} id="licensor" name="search" placeholder="Licensor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Distributor</label>
-            <input onChange={handleChange} name="distributor" type="text" placeholder="Contract Distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} id="distributor" name="search" placeholder="Contract Distributor" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Territory</label>
-            <input onChange={handleChange} name="territory" type="text" placeholder="Territory" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} id="territory" name="search" type="text" placeholder="Territory" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Right</label>
-            <input onChange={handleChange} name="distributor" type="text" placeholder="Right" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+            <input onChange={handleChange} id="right" name="search" type="text" placeholder="Right" className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
           </div>
 
 
