@@ -66,6 +66,30 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
   }
 
   const selectContractStatus = (status : validContractStatusOpts) => {
+  const selectTitleType = (selection : validTitleTypeOpts) => {
+    setFilter((prev) : ContractFilter => {
+      return {
+        ...prev,
+        titleType: {
+          ...prev.titleType,
+          search: selection,
+        }
+      }
+    });
+  }
+
+  const selectContractType = (selection : validContractTypeOpts) => {
+    setFilter((prev) : ContractFilter => {
+      return {
+        ...prev,
+        contractType: {
+          ...prev.contractType,
+          search: selection,
+        }
+      }
+    });
+  }
+
     setFilter((prev) : ContractFilter => {
       return {
         ...prev,
