@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { IContract } from '@/utils/interfaces';
+import { IContract, ContractFilter } from '@/utils/interfaces';
+import { filterState } from '@/data/filter-state.data';
 import Link from 'next/link';
 import api from '@/utils/api';
 import Dropdown from '@/components/Dropdown';
@@ -10,54 +11,22 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   const contracts = _contracts;
 
-  const [ filter, setFilter ] = useState({
-    title: {
-      type: 'any',
-      searchTerm: '',
-    },
-    contractId: {
-      type: 'any',
-      searchTerm: '',
-    },
-    licensor: {
-      searchTerm: '',
-    },
-    distributor: {
-      searchTerm: '',
-    },
-    territory: {
-      searchTerm: '',
-    },
-    right: {
-      searchTerm: '',
-    },
-    contractStatus: {
-      type: 'any',
-    },
-    dealStatus: {
-      type: 'any',
-    },
-    productionStatus: {
-      type: 'any',
-    },
-  });
+  const [ filter, setFilter ] = useState<ContractFilter>(filterState);
 
   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
 
-    const filterName = event.target.name;
-    interface filterType {
-      type?: string,
-      searchTerm?: string,
-    }
+    type filterTypes = "titleType" | "title" | "contractType" | "contractId" | "licensor" | "distributor" | "territory" | "right" | "contractStatus" | "dealStatus" | "productionStatus" ;
 
-    setFilter(prev => {
+    let filterName = event.target.value as filterTypes;
+
+    setFilter((prev) : ContractFilter => {
       return {
         ...prev,
         [filterName]: {
           ...prev[filterName],
-          searchTerm: [event.target.value],
+          search: [event.target.value],
         }
-      }
+      } as ContractFilter
     });
   }
 
