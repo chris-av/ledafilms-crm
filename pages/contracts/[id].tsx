@@ -30,7 +30,7 @@ export default function Contract({ contract } : { contract: IContract }) {
     <div className="p-6">
       <h1 className="w-full my-8 text-center">Contract : { contractId }</h1>
 
-      <form onSubmit={handleSubmit} className="bg-teal-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-5xl mx-auto">
+      <form onSubmit={handleSubmit} className="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-5xl mx-auto">
 
 
         <div className="flex flex-wrap justify-between">
