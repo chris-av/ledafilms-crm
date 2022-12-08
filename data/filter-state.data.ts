@@ -7,7 +7,7 @@ export const filterState : ContractFilter = {
   },
   title: {
     operator: '~',
-    search: '=',
+    search: '',
   },
   contractType: {
     operator: '=',
