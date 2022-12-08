@@ -153,7 +153,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
           <div className="flex items-center px-3 h-10">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
-            <div className="w-2/12 h-full text-center bg-gray-200 py-1 mx-2 rounded">
+            <div className="w-2/12 h-full text-center bg-gray-200 py-1 mr-2 rounded">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -180,7 +180,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
           <div className="flex items-center px-3 h-10">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
-            <div className="w-2/12 h-full text-center bg-gray-200 py-1 mx-2 rounded">
+            <div className="w-2/12 h-full text-center bg-gray-200 py-1 mr-2 rounded">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -203,46 +203,54 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
           <div className="flex items-center px-3">
             <label className="w-3/12 flex items-center uppercase tracking-wide text-gray-700 text-xs font-bold">Licensor</label>
-            <FormTextInput 
-              callback={handleChange} 
-              id="licensor" 
-              name="search" 
-              placeholder="Licensor" 
-              extraClasses={["w-9/12"]}
-            />
+            <span className="h-full flex items-center w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <SearchIcon />
+              <FormTextInput 
+                callback={handleChange} 
+                id="licensor" 
+                name="search" 
+                placeholder="Licensor" 
+              />
+            </span>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Distributor</label>
-            <FormTextInput 
-              callback={handleChange} 
-              id="distributor" 
-              name="search" 
-              placeholder="Contract Distributor" 
-              extraClasses={["w-9/12 leading-tight"]}
-            />
+            <span className="h-full flex items-center w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <SearchIcon />
+              <FormTextInput 
+                callback={handleChange} 
+                id="distributor" 
+                name="search" 
+                placeholder="Contract Distributor" 
+              />
+            </span>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Territory</label>
-            <FormTextInput 
-              callback={handleChange} 
-              id="territory" 
-              name="search" 
-              placeholder="Territory" 
-              extraClasses={["w-9/12 leading-tight"]}
-            />
+            <span className="h-full flex items-center w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <SearchIcon />
+              <FormTextInput 
+                callback={handleChange} 
+                id="territory" 
+                name="search" 
+                placeholder="Territory" 
+              />
+            </span>
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Right</label>
-            <FormTextInput 
-              callback={handleChange} 
-              id="right" 
-              name="search" 
-              placeholder="Right" 
-              extraClasses={["w-9/12 leading-tight"]}
-            />
+            <span className="h-full flex items-center w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <SearchIcon />
+              <FormTextInput 
+                callback={handleChange} 
+                id="right" 
+                name="search" 
+                placeholder="Right" 
+              />
+            </span>
           </div>
 
 
