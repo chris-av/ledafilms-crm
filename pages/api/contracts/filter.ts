@@ -21,9 +21,9 @@ export default async function handler (
     type filterKeys = "titleType" | "title" | "contractType" | "contractId" | "licensor" | "distributor" | "territory" | "right" | "contractStatus" | "dealStatus" | "productionStatus" | "dealType";
 
     // TODO: how to suppress typescript error?
-    Object.keys(filter).forEach(key => {
+    Object.keys(filter).forEach((key) => {
       if (filter[key as filterKeys].search === 'any') {
-        delete filter[key];
+        delete filter[key as filterKeys];
       }
     });
 
