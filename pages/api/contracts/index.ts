@@ -9,7 +9,10 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   try {
-    const result = await Contract.findAll();
+    const result = await Contract.findAll({
+      limit: 50,
+      offset: 0,
+    });
     res.status(200).json({ data: result });
   } catch (err) {
     console.log(err);
