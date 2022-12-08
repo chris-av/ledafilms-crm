@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import DownArrow from '@/components/icons/ChevronDown';
 
 interface Options {
@@ -8,10 +7,11 @@ interface Options {
 
 interface ComponentProps {
   options: Options[],
+  value: string,
   callback: (val: any) => any
 }
 
-export default function Dropdown({ options, callback } : ComponentProps) {
+export default function Dropdown({ options, callback, value } : ComponentProps) {
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     callback(event.target.value);
@@ -21,7 +21,7 @@ export default function Dropdown({ options, callback } : ComponentProps) {
     <div className="flex justify-center items-center bg-gray-200 w-full py-1 rounded">
 
       <div className="relative w-full">
-        <select defaultValue={options[0].value} onChange={handleSelect} className="block appearance-none outline-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none">
+        <select defaultValue={options[0].value} value={value} onChange={handleSelect} className="block appearance-none outline-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none">
           { options.map(({ label, value }) => (
             <option key={value} value={value}>{label}</option>
           )) }

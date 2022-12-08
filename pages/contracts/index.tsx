@@ -138,6 +138,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
     });
   }
 
+  const resetFilters = () => setFilter(filterState);
+
   console.log({ filter });
 
   return (
@@ -155,6 +157,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
             <div className="w-2/12 h-full text-center bg-gray-200 py-1 mr-2 rounded">
               <Dropdown
+                value={filter.titleType.search}
                 options={[
                   { label: '(any)', value: 'any' },
                   { label: 'Film', value: 'Film' },
@@ -173,6 +176,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={handleChange} 
                 id="title" 
                 name="search" 
+                value={filter.title.search}
                 placeholder="Contract Title" 
               />
             </span>
@@ -182,6 +186,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
             <div className="w-2/12 h-full text-center bg-gray-200 py-1 mr-2 rounded">
               <Dropdown
+                value={filter.contractType.search}
                 options={[
                   { label: '(any)', value: 'any' },
                   { label: 'Sales', value: 'Sales' },
@@ -196,6 +201,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={handleChange} 
                 id="contractId" 
                 name="search" 
+                value={filter.contractId.search}
                 placeholder="Contract ID" 
               />
             </span>
@@ -209,6 +215,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={handleChange} 
                 id="licensor" 
                 name="search" 
+                value={filter.licensor.search}
                 placeholder="Licensor" 
               />
             </span>
@@ -222,6 +229,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={handleChange} 
                 id="distributor" 
                 name="search" 
+                value={filter.distributor.search}
                 placeholder="Contract Distributor" 
               />
             </span>
@@ -235,6 +243,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={handleChange} 
                 id="territory" 
                 name="search" 
+                value={filter.territory.search}
                 placeholder="Territory" 
               />
             </span>
@@ -248,6 +257,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={handleChange} 
                 id="right" 
                 name="search" 
+                value={filter.right.search}
                 placeholder="Right" 
               />
             </span>
@@ -259,6 +269,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center h-full w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Contract Status</label>
             <div className="flex h-full w-6/12">
               <Dropdown
+                value={filter.contractStatus.search}
                 options={[
                   { label: '(any)', value: 'any' },
                   { label: 'Normal', value: 'Normal' },
@@ -274,6 +285,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Status</label>
             <div className="flex h-full w-6/12">
               <Dropdown
+                value={filter.dealStatus.search}
                 options={[
                   { label: '(any)', value: 'any' },
                   { label: 'Long Form Executed', value: 'Long Form Executed' },
@@ -291,6 +303,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Production Status</label>
             <div className="flex h-full w-6/12">
               <Dropdown
+                value={filter.productionStatus.search}
                 options={[
                   { label: '(any)', value: 'any' },
                   { label: 'Completed', value: 'Completed' },
@@ -309,6 +322,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Type</label>
             <div className="flex h-full w-6/12">
               <Dropdown
+                value={filter.dealType.search}
                 options={[
                   { label: '(any)', value: 'any' },
                   { label: 'Acquired Content', value: 'Acquired Content' },
@@ -323,7 +337,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
         </div>
 
         <div className="flex justify-between items-center max-w-8">
-          <button type="submit" className="my-5 bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Reset</button>
+          <button onClick={resetFilters} className="my-5 bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Reset</button>
           <button type="submit" className="my-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
         </div>
 
@@ -391,10 +405,11 @@ function SearchIcon() {
 }
 
 
-function FormTextInput({ id, name, placeholder, callback, extraClasses = [] } : {
+function FormTextInput({ id, name, placeholder, callback, value, extraClasses = [] } : {
   id: string,
   name: string,
   placeholder: string,
+  value: string,
   extraClasses?: string[],
   callback: (event: React.ChangeEvent<HTMLInputElement>) => any
 }) {
@@ -409,6 +424,7 @@ function FormTextInput({ id, name, placeholder, callback, extraClasses = [] } : 
       type="text"
       placeholder={placeholder} 
       onChange={callback}
+      value={value}
       className={_class}
     />
   );
