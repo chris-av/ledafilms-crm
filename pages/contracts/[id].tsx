@@ -5,7 +5,7 @@ import DownArrow from '@/components/icons/ChevronDown';
 import api from '@/utils/api';
 
 
-export default function Contract({ contract } : { contract: IContract }) {
+export default function Contract({ contract, open_windows } : { contract: IContract, open_windows : any }) {
   const router = useRouter();
   const { id: contractId } = router.query;
 
@@ -25,6 +25,8 @@ export default function Contract({ contract } : { contract: IContract }) {
       }
     });
   }
+
+  console.log({ contract, open_windows });
 
   return (
     <div className="p-6">
@@ -185,11 +187,14 @@ export default function Contract({ contract } : { contract: IContract }) {
 export async function getServerSideProps({ query } : { query: { id: string, } }) {
   try {
     const { id: contract_id } = query;
-    const response = await api.getContract(contract_id);
-    const data = await response;
+    const response_contract = await api.getContract(contract_id);
+    const _contract = await response_contract;
+
+    const response_openWindows = await api.getOpenWindow(contract_id);
+    const _open_windows = response_openWindows;
 
     return {
-      props: { error: null, contract: data }
+      props: { error: null, contract: _contract, open_windows: _open_windows }
     }
 
   } catch (err) {
