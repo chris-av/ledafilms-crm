@@ -9,6 +9,7 @@ import { filterState } from '@/data/filter-state.data';
 import Link from 'next/link';
 import api from '@/utils/api';
 import Dropdown from '@/components/Dropdown';
+import MagnifyingGlass from '@/components/icons/MagnifyingGlass';
 
 
 
@@ -148,11 +149,11 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
         <h2 className="text-center mb-8">Contract filter</h2>
 
-        <div className="grid grid-rows-6 grid-flow-col auto-cols-[60%_40%] mx-3 mb-6">
+        <div className="grid grid-rows-6 grid-flow-col auto-cols-[60%_40%] gap-2 mx-3 mb-6">
 
-          <div className="flex items-center px-3 py-1">
+          <div className="flex items-center px-3 h-10">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
-            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">
+            <div className="w-2/12 h-full text-center bg-gray-200 py-1 mx-2 rounded">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -166,19 +167,20 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={selectTitleType}
               />
             </div>
-            <input 
-              onChange={handleChange} 
-              id="title" 
-              name="search" 
-              type="text" 
-              placeholder="Contract Title" 
-              className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            />
+            <span className="h-full flex justify-between items-center w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <SearchIcon />
+              <FormTextInput
+                callback={handleChange} 
+                id="title" 
+                name="search" 
+                placeholder="Contract Title" 
+              />
+            </span>
           </div>
 
-          <div className="flex items-center px-3">
+          <div className="flex items-center px-3 h-10">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
-            <div className="w-2/12 text-center bg-gray-200 py-1 mx-2 rounded">
+            <div className="w-2/12 h-full text-center bg-gray-200 py-1 mx-2 rounded">
               <Dropdown
                 options={[
                   { label: '(any)', value: 'any' },
@@ -188,58 +190,58 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
                 callback={selectContractType}
               />
             </div>
-            <input 
-              onChange={handleChange} 
-              id="contractId" 
-              name="search" 
-              placeholder="Contract ID" 
-              className="appearance-none block w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            />
+            <span className="h-full flex justify-between items-center w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <SearchIcon />
+              <FormTextInput 
+                callback={handleChange} 
+                id="contractId" 
+                name="search" 
+                placeholder="Contract ID" 
+              />
+            </span>
           </div>
 
           <div className="flex items-center px-3">
-            <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Licensor</label>
-            <input 
-              onChange={handleChange} 
+            <label className="w-3/12 flex items-center uppercase tracking-wide text-gray-700 text-xs font-bold">Licensor</label>
+            <FormTextInput 
+              callback={handleChange} 
               id="licensor" 
               name="search" 
               placeholder="Licensor" 
-              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              extraClasses={["w-9/12"]}
             />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Distributor</label>
-            <input 
-              onChange={handleChange} 
+            <FormTextInput 
+              callback={handleChange} 
               id="distributor" 
               name="search" 
               placeholder="Contract Distributor" 
-              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              extraClasses={["w-9/12 leading-tight"]}
             />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Territory</label>
-            <input 
-              onChange={handleChange} 
+            <FormTextInput 
+              callback={handleChange} 
               id="territory" 
               name="search" 
-              type="text" 
               placeholder="Territory" 
-              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              extraClasses={["w-9/12 leading-tight"]}
             />
           </div>
 
           <div className="flex items-center px-3">
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Right</label>
-            <input 
-              onChange={handleChange} 
+            <FormTextInput 
+              callback={handleChange} 
               id="right" 
               name="search" 
-              type="text" 
               placeholder="Right" 
-              className="appearance-none block w-9/12 bg-gray-200 text-gray-700 border border-gray-200 rounded py-1 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              extraClasses={["w-9/12 leading-tight"]}
             />
           </div>
 
@@ -368,6 +370,39 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
       <div className="h-12"></div>
 
     </div>
+  );
+}
+
+
+function SearchIcon() {
+  return (
+    <div className="mr-4">
+      <MagnifyingGlass height={15} width={15} />
+    </div>
+  );
+}
+
+
+function FormTextInput({ id, name, placeholder, callback, extraClasses = [] } : {
+  id: string,
+  name: string,
+  placeholder: string,
+  extraClasses?: string[],
+  callback: (event: React.ChangeEvent<HTMLInputElement>) => any
+}) {
+
+  const base = "w-full h-full appearance-none block bg-gray-200 outline-none py-1 pl-4 px-2 focus:bg-white"
+  const _class = [base, ...extraClasses].join(' ');
+
+  return (
+    <input 
+      id={id} 
+      name={name} 
+      type="text"
+      placeholder={placeholder} 
+      onChange={callback}
+      className={_class}
+    />
   );
 }
 
