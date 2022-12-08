@@ -8,11 +8,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { id: unique_id } = req.query;
-    const result = await OpenWindow.findOne({
+    const { id: contract_id } = req.query;
+    console.log({ contract_id });
+    const result = await OpenWindow.findAll({
       where: {
-        unique_id
-      }
+        contract_id
+      },
+      limit: 50,
+      offset: 0,
     });
     res.status(200).json({ data: result });
   } catch (err: any) {
