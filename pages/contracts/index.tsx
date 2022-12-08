@@ -147,7 +147,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
       <h1 className="text-center mb-8">Contracts</h1>
 
       {/* implement search */}
-      <form onSubmit={handleSubmit} className="bg-pink-50 w-full my-10 py-4 shadow-md rounded px-8 mb-4">
+      <form onSubmit={handleSubmit} className="bg-gray-100 w-full my-10 py-4 shadow-md rounded px-8 mb-4">
 
         <h2 className="text-center mb-8">Contract filter</h2>
 
