@@ -21,7 +21,7 @@ export default function Dropdown({ options, callback, value } : ComponentProps) 
     <div className="flex justify-center items-center bg-gray-200 w-full py-1 rounded">
 
       <div className="relative w-full">
-        <select defaultValue={options[0].value} value={value} onChange={handleSelect} className="block appearance-none outline-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none">
+        <select value={value} onChange={handleSelect} className="block appearance-none outline-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none">
           { options.map(({ label, value }) => (
             <option key={value} value={value}>{label}</option>
           )) }
