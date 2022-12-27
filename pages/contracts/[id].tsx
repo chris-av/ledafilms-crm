@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { IContract } from '@/utils/interfaces';
+import { IContract, IOpenWindow } from '@/utils/interfaces';
 import DownArrow from '@/components/icons/ChevronDown';
 import api from '@/utils/api';
 
 
-export default function Contract({ contract, open_windows } : { contract: IContract, open_windows : any }) {
+export default function Contract({ contract, open_windows } : { contract: IContract, open_windows : IOpenWindow[] }) {
   const router = useRouter();
   const { id: contractId } = router.query;
 
@@ -179,6 +179,39 @@ export default function Contract({ contract, open_windows } : { contract: IContr
 
       </form>
 
+      {/* open windows component goes here */}
+      {/* issue, we are gonna have to paginate even the open_windows result */}
+
+      <table className="table-auto w-full rounded-lg">
+        <thead>
+          <tr className="text-sm text-left">
+            {
+              ['Territory', 'Right', 'License Type', 'Start Date',
+               'St. Date Confirmed', 'End Date', 'End Date Confirmed'].map(col => col.toUpperCase()).map(col => (
+                  <th key={col}>{col}</th>
+                ))
+            }
+          </tr>
+        </thead>
+        <tbody>
+          {/* map over open_windows result */}
+          {/* missing title */}
+          { open_windows.map(({ territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
+            <tr className="text-sm">
+              <td className="">{territory}</td>
+              <td className="">{right}</td>
+              <td className="">{license_type}</td>
+              <td className="">{start_date}</td>
+              <td className="text-center"><input type="checkbox" value="start confirmed" checked={start_confirmed} /></td>
+              <td className="">{end_date}</td>
+              <td className="text-center"><input type="checkbox" value="end confirmed" checked={end_confirmed} /></td>
+            </tr>
+          )) }
+        </tbody>
+      </table>
+
+      <div className="h-12"></div>
+
     </div>
   );
 }
@@ -199,7 +232,7 @@ export async function getServerSideProps({ query } : { query: { id: string, } })
 
   } catch (err) {
     return {
-      props: { error: err, contract: null }
+      props: { error: err, contract: null, open_windows: null }
     }
   }
 }
