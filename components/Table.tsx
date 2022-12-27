@@ -3,6 +3,8 @@ import Link from 'next/link';
 interface ComponentProps {
   headers: string[],
   rows: any[],
+  rowHandler?: () => void,
+  columnHandler?: () => void,
 }
 
 export default function Table({ headers, rows } : ComponentProps) {
@@ -11,6 +13,7 @@ export default function Table({ headers, rows } : ComponentProps) {
       <thead>
         <tr>
           {/* render your column headers, th */}
+          { headers.map(header => <td id={header}>{header}</td>) }
         </tr>
       </thead>
 
