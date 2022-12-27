@@ -44,8 +44,8 @@ class LedaRequests {
     }
   }
 
-  async getOpenWindow(id: string) {
-    const response = await fetch(`${this.url}/open-windows/${id}`);
+  async getOpenWindow(contract_id: string) {
+    const response = await fetch(`${this.url}/open-windows/${contract_id}`);
     const { data: open_windows } = await response.json();
     return open_windows;
   }
