@@ -11,6 +11,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
 
   // useEffect at some point to make an api call to get your data
   const [ pageContract, setPageContract ] = useState<IContract>(contract);
+  const [ openWindows, setOpenWindows ] = useState<IOpenWindow[]>(open_windows);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +27,29 @@ export default function Contract({ contract, open_windows } : { contract: IContr
     });
   }
 
-  console.log({ contract, open_windows });
+  const handleCheck = ({
+    type, i
+  } : {
+    type: string, i: number,
+  }) => {
+    setOpenWindows((prev : IOpenWindow[]) => {
+      // find the item that was checked
+      let openWindowsCopy = [ ...prev ];
+
+      if (type === 'start-confirmed') {
+        console.log('running end confirmed')
+        console.log({ before: openWindowsCopy[i].start_confirmed });
+        openWindowsCopy[i].start_confirmed = !openWindowsCopy[i].start_confirmed;
+      } else if (type === 'end-confirmed') {
+        console.log('running end confirmed')
+        console.log({ before: openWindowsCopy[i].end_confirmed });
+        openWindowsCopy[i].end_confirmed = !openWindowsCopy[i].end_confirmed;
+      }
+
+      return openWindowsCopy;
+
+    });
+  }
 
   return (
     <div className="p-6">
@@ -196,15 +219,39 @@ export default function Contract({ contract, open_windows } : { contract: IContr
         <tbody>
           {/* map over open_windows result */}
           {/* missing title */}
-          { open_windows.map(({ territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
-            <tr className="text-sm">
+          {/* how do you uniquely identify row or record? Combination of unique_id, contract_id, start_date and licensor? */}
+          {/* would highly recommend generic id column that is a sequence of integers for easy identification of record/row */}
+          { openWindows.map(({ contract_id, right_group, unique_id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }, i) => (
+            <tr key={i} className="text-sm">
               <td className="">{territory}</td>
               <td className="">{right}</td>
               <td className="">{license_type}</td>
               <td className="">{start_date}</td>
-              <td className="text-center"><input type="checkbox" value="start confirmed" checked={start_confirmed} /></td>
+              <td className="text-center">
+                <input 
+                  type="checkbox" 
+                  value="start confirmed" 
+                  name="start-confirmed" 
+                  checked={start_confirmed} 
+                  onChange={() => handleCheck({
+                    type: 'start-confirmed',
+                    i,
+                  })}
+                />
+              </td>
               <td className="">{end_date}</td>
-              <td className="text-center"><input type="checkbox" value="end confirmed" checked={end_confirmed} /></td>
+              <td className="text-center">
+                <input 
+                  type="checkbox" 
+                  value="end confirmed" 
+                  name="end-confirmed" 
+                  checked={end_confirmed}
+                  onChange={() => handleCheck({
+                    type: 'end-confirmed',
+                    i,
+                  })}
+                />
+              </td>
             </tr>
           )) }
         </tbody>
