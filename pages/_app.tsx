@@ -6,7 +6,7 @@ import "@/styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className="h-screen w-full overflow-hidden">
-      <Topbar theme="basic" />
+      <Topbar />
       <div className="flex overflow-hidden h-screen w-screen">
         <Navbar />
         <div className="w-full p-8 h-full overflow-auto">

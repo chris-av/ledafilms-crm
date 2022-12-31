@@ -5,7 +5,7 @@ import { testUser } from '@/data/user.data';
 import SearchIcon from '@/components/icons/MagnifyingGlass';
 
 
-export default function Topbar({ theme } : { theme: string }) {
+export default function Topbar() {
   const [ search, setSearch ] = useState('');
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
