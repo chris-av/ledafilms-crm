@@ -3,14 +3,14 @@ import { createContext, useContext, ReactNode, useState } from 'react';
 
 
 type ThemeContextType = {
-  theme: string | undefined;
-  toggleTheme: (theme: "dark" | "light") => void;
+  theme: "light" | "dark" | undefined;
+  toggleTheme: () => void;
 }
 
 
-const appContextDefaultValue = {
-  theme: 'light',
-  toggleTheme: (theme: "dark" | "light") => {}
+const appContextDefaultValue : ThemeContextType = {
+  theme: "light",
+  toggleTheme: () => {}
 }
 
 
@@ -23,10 +23,13 @@ export const useThemeContext = () => {
 
 
 export default function({ children } : { children: ReactNode }) {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState<ThemeContextType["theme"]>("light");
 
-  const toggleTheme = (theme: "dark" | "light") => {
-    setTheme(theme);
+  const toggleTheme = () => {
+    setTheme((prev : ThemeContextType["theme"]) => {
+      if (prev === "light") return "dark";
+      if (prev === "dark") return "light";
+    });
   }
 
   return (
