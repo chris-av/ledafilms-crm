@@ -60,6 +60,7 @@ Contract.init({
 });
 
 OpenWindow.init({
+  id: DataTypes.NUMBER,
   territory: DataTypes.STRING,
   right: DataTypes.STRING,
   license_type: DataTypes.STRING,
