@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { IContract, IOpenWindow } from '@/utils/interfaces';
 import {
   IContract, IOpenWindow,
   ContractTypes, ContractStatuses,
@@ -84,7 +83,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Contract #
             </label>
-            <input value={contract.contract_id} onChange={handleChange} name="contractNumber" type="text" placeholder="Contract Number" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input name="contract_id" value={pageContract.contract_id} onChange={handleChange} type="text" placeholder="Contract Number" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
         </div>
 
@@ -94,13 +93,13 @@ export default function Contract({ contract, open_windows } : { contract: IContr
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Licensor
             </label>
-            <input name="licensor" type="text" value={contract.licensor} onChange={handleChange} placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input name="licensor" type="text" value={pageContract.licensor} onChange={handleChange} placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
           <div className="mb-4 md:w-1/2 px-4">
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-              Licensee
+              Distributor
             </label>
-            <input name="licensee" type="text" value={contract.licensor} onChange={handleChange} placeholder="Effective Date" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input name="distributor" type="text" value={pageContract.distributor} onChange={handleChange} placeholder="Distributor" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
         </div>
 
@@ -159,7 +158,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Effective Date
             </label>
-            <input value={contract.creation_date} onChange={handleChange} name="licensee" type="text" placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input value={pageContract.creation_date} onChange={handleChange} name="licensee" type="text" placeholder="Username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
         </div>
 
@@ -168,7 +167,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
             <label className="block px-1 text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Minimum Guarantee
             </label>
-            <input value={contract.mg} onChange={handleChange} name="licensee" type="text" placeholder="Amount" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <input value={pageContract.mg} onChange={handleChange} name="licensee" type="text" placeholder="Amount" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </div>
 
           <div className="mb-4 md:w-1/2 px-4">
@@ -176,7 +175,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               Currency
             </label>
             <div className="relative">
-              <select value={contract.cur} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+              <select value={pageContract.cur} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                 <option>USD</option>
                 <option>Colones</option>
               </select>
