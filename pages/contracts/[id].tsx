@@ -7,6 +7,7 @@ import {
   DealTypes,
 } from '@/utils/interfaces';
 import { Button } from '@/design-system/button';
+import Plus from '@/components/icons/Plus';
 import DownArrow from '@/components/icons/ChevronDown';
 import api from '@/utils/api';
 
@@ -216,7 +217,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
         <Button
           as="button"
           onClick={() => {}}
-          iconLeft={() => <div>+</div>}
+          iconLeft={() => <Plus size={14} color="white" />}
           size="sm"
           intent="primary"
         >
