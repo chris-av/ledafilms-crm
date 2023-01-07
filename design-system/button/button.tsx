@@ -68,8 +68,6 @@ export function Button({ ...props } : UseProps) {
   })
 
 
-  // TODO: detect if external link or internal link
-  // therefore, either use a tag or next's link component
   if (isAnchor(props)) {
     const { href } = props;
     const isExternalLink = href?.startsWith("http");
