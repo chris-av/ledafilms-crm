@@ -9,6 +9,7 @@ class OpenWindow extends Model<InferAttributes<OpenWindow>, InferCreationAttribu
   // static associate(models) {
   //   // define association here
   // }
+  declare id: number;
   declare territory: string;
   declare right: string;
   declare license_type: string;
