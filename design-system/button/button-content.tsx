@@ -26,13 +26,13 @@ export function ButtonContent({
 
   // detect if button is icon on either side
   return (
-    <div className={classNames("flex justify-between", {})}>
+    <div className={classNames("flex justify-between items-center", {})}>
 
       { IconLeft ? (
         <IconLeft />
       ) : null }
 
-      <span>{children}</span>
+      <span className="mx-1">{children}</span>
 
       { IconRight ? (
         <IconRight />
