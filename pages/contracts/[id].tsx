@@ -6,6 +6,7 @@ import {
   DealStatuses, ProductionStatuses,
   DealTypes,
 } from '@/utils/interfaces';
+import { Button } from '@/design-system/button';
 import DownArrow from '@/components/icons/ChevronDown';
 import api from '@/utils/api';
 
@@ -211,9 +212,20 @@ export default function Contract({ contract, open_windows } : { contract: IContr
 
       </form>
 
+      <div className="my-8">
+        <Button
+          as="button"
+          onClick={() => {}}
+          iconLeft={() => <div>+</div>}
+          size="sm"
+          intent="primary"
+        >
+          Add
+        </Button>
+      </div>
+
       {/* open windows component goes here */}
       {/* issue, we are gonna have to paginate even the open_windows result */}
-
       <table className="table-auto w-full rounded-lg">
         <thead>
           <tr className="text-sm text-left">
