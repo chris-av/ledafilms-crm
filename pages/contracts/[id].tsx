@@ -28,26 +28,26 @@ export default function Contract({ contract, open_windows } : { contract: IContr
   }
 
   const handleCheck = ({
-    type, i
+    type, id
   } : {
-    type: string, i: number,
+    type: string, id: number,
   }) => {
     setOpenWindows((prev : IOpenWindow[]) => {
-      // find the item that was checked
-      let openWindowsCopy = [ ...prev ];
-
       if (type === 'start-confirmed') {
-        console.log('running end confirmed')
-        console.log({ before: openWindowsCopy[i].start_confirmed });
-        openWindowsCopy[i].start_confirmed = !openWindowsCopy[i].start_confirmed;
-      } else if (type === 'end-confirmed') {
-        console.log('running end confirmed')
-        console.log({ before: openWindowsCopy[i].end_confirmed });
-        openWindowsCopy[i].end_confirmed = !openWindowsCopy[i].end_confirmed;
+        return prev.map(row => {
+          return row.id === id ? {
+            ...row,
+            start_confirmed: !row.start_confirmed,
+          } : row
+        });
+      } else {
+        return prev.map(row => {
+          return row.id === id ? {
+            ...row,
+            end_confirmed: !row.end_confirmed,
+          } : row
+        });
       }
-
-      return openWindowsCopy;
-
     });
   }
 
@@ -221,8 +221,8 @@ export default function Contract({ contract, open_windows } : { contract: IContr
           {/* missing title */}
           {/* how do you uniquely identify row or record? Combination of unique_id, contract_id, start_date and licensor? */}
           {/* would highly recommend generic id column that is a sequence of integers for easy identification of record/row */}
-          { openWindows.map(({ contract_id, right_group, unique_id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }, i) => (
-            <tr key={i} className="text-sm">
+          { openWindows.map(({ id, contract_id, right_group, unique_id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
+            <tr key={id} className="text-sm">
               <td className="">{territory}</td>
               <td className="">{right}</td>
               <td className="">{license_type}</td>
@@ -235,7 +235,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
                   checked={start_confirmed} 
                   onChange={() => handleCheck({
                     type: 'start-confirmed',
-                    i,
+                    id,
                   })}
                 />
               </td>
@@ -248,7 +248,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
                   checked={end_confirmed}
                   onChange={() => handleCheck({
                     type: 'end-confirmed',
-                    i,
+                    id,
                   })}
                 />
               </td>
