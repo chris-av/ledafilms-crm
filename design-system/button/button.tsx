@@ -59,7 +59,7 @@ export function Button({ ...props } : UseProps) {
     props.as = "button";
   }
 
-  const className = classNames("rounded-full transition-colors bg-[red]", {
+  const className = classNames("rounded-md transition-colors bg-[red]", {
     "text-sm py-2 px-6": size === "sm",
     "text-sm py-4 px-6": size === "md",
     "bg-[green] text-white": intent === "primary",
