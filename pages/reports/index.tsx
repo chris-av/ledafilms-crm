@@ -11,9 +11,11 @@
 
 
 */}
-export default function Reports () {
+export default function Reports() {
   return (
-    <h1>Reports</h1>
+    <div>
+      <h1>Reports</h1>
+    </div>
   );
 }
 
