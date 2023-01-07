@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { IContract, IOpenWindow } from '@/utils/interfaces';
+import {
+  IContract, IOpenWindow,
+  ContractTypes, ContractStatuses,
+  DealStatuses, ProductionStatuses,
+  DealTypes,
+} from '@/utils/interfaces';
 import DownArrow from '@/components/icons/ChevronDown';
 import api from '@/utils/api';
 
@@ -64,9 +70,10 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               Contract Type
             </label>
             <div className="relative">
-              <select value={contract.contract_type} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                <option value="acquisition">Acquisition</option>
-                <option value="sales">Sales</option>
+              <select name="contract_type" value={pageContract.contract_type} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                { ContractTypes.map(type => (
+                  <option key={type} value={type}>{type}</option>
+                )) }
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <DownArrow size={15} />
@@ -103,9 +110,10 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               Deal Status
             </label>
             <div className="relative">
-              <select value={contract.deal_status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+              <select name="deal_status" value={pageContract.deal_status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                { DealStatuses.map(type => (
+                  <option key={type} value={type}>{type}</option>
+                )) }
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <DownArrow size={15} />
@@ -118,9 +126,10 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               Status
             </label>
             <div className="relative">
-              <select value={contract.status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                <option>Active</option>
-                <option>Inactive</option>
+              <select name="status" value={pageContract.status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                {ContractStatuses.map(type => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <DownArrow size={15} />
@@ -135,9 +144,10 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               Deal Type
             </label>
             <div className="relative">
-              <select value={contract.deal_status} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
+              <select name="deal_type" value={pageContract.deal_type} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                {DealTypes.map(type => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <DownArrow size={15} />
