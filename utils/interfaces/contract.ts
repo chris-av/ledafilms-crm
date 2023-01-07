@@ -1,30 +1,17 @@
-export enum ContractTypes {
-  Sales = "Sales",
-  Acquisition = "Acquisition"
-}
+export const ContractTypes = ["Sales", "Acquistion"] as const;
+export const ContractStatuses = ["Normal", "Internal", "Cancelled"] as const;
+export const DealStatuses = ["Awaiting Signature", "Cancelled", "Deal Memo Executed", "In Negotiation", "Long Form Executed"] as const;
 
-export enum ContractDealStatuses {
-  Active = "active",
-  Inactive = "inactive",
-  Pending = "pending",
-  Executed = "executed",
-}
+export const ProductionStatuses = ["Completed", "Post-Production", "Production", "Development", "Catalog", "Pre-Production"] as const;
 
-export enum ContractStatuses {
-  Active = "active",
-  Inactive = "inactive",
-  Pending = "pending",
-  Executed = "executed",
-}
+export const DealTypes = ["[MG] [++Mg]", "[Royalties/Revenue Share]", 
+  "Co-Production", "Flat Fee", "Minimum Guarantee", "Output Agent", "Production / License Agrmnt",
+  "Straight Distribution", "Volume Deal"] as const;
 
-export enum DealTypes {
-  Movie = "movie",
-  ShortFilm = "shortfilm",
-  Skit = "skit",
-}
+
+
 
 export interface IContract {
-
   contract_type: string,
   licensor: string,
   distributor: string,
