@@ -1,4 +1,5 @@
 export interface IOpenWindow {
+  id: number;
   territory: string;
   right: string;
   license_type: string;
