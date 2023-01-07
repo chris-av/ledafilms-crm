@@ -217,10 +217,6 @@ export default function Contract({ contract, open_windows } : { contract: IContr
           </tr>
         </thead>
         <tbody>
-          {/* map over open_windows result */}
-          {/* missing title */}
-          {/* how do you uniquely identify row or record? Combination of unique_id, contract_id, start_date and licensor? */}
-          {/* would highly recommend generic id column that is a sequence of integers for easy identification of record/row */}
           { openWindows.map(({ id, contract_id, right_group, unique_id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
             <tr key={id} className="text-sm">
               <td className="">{territory}</td>
