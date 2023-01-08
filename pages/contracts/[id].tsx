@@ -59,7 +59,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
   }
 
   return (
-    <div className="p-6">
+    <div className="">
       <h1 className="w-full my-8 text-center">Contract : { contractId }</h1>
 
       <form onSubmit={handleSubmit} className="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-5xl mx-auto">
@@ -227,7 +227,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
 
       {/* open windows component goes here */}
       {/* issue, we are gonna have to paginate even the open_windows result */}
-      <table className="table-auto w-full rounded-lg">
+      <table className="table-auto w-full rounded-lg border-collapse">
         <thead>
           <tr className="text-sm text-left">
             {
@@ -239,8 +239,8 @@ export default function Contract({ contract, open_windows } : { contract: IContr
           </tr>
         </thead>
         <tbody>
-            <tr key={id} className="text-sm">
           { openWindows.map(({ id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
+            <tr key={id} className="text-sm font-extralight border-y leading-8">
               <td className="">{territory}</td>
               <td className="">{right}</td>
               <td className="">{license_type}</td>
@@ -248,6 +248,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               <td className="text-center">
                 <input 
                   type="checkbox" 
+                  className="cursor-pointer"
                   value="start confirmed" 
                   name="start-confirmed" 
                   checked={start_confirmed} 
@@ -261,6 +262,7 @@ export default function Contract({ contract, open_windows } : { contract: IContr
               <td className="text-center">
                 <input 
                   type="checkbox" 
+                  className="cursor-pointer"
                   value="end confirmed" 
                   name="end-confirmed" 
                   checked={end_confirmed}
