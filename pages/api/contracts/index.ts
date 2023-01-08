@@ -9,9 +9,12 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   try {
+    const tmp = req.query.offset as string;
+    const offset = parseInt(tmp) || 0;
+    console.log({ offset });
     const result = await Contract.findAll({
       limit: 50,
-      offset: 0,
+      offset,
     });
     res.status(200).json({ data: result });
   } catch (err) {
