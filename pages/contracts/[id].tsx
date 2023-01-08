@@ -239,8 +239,8 @@ export default function Contract({ contract, open_windows } : { contract: IContr
           </tr>
         </thead>
         <tbody>
-          { openWindows.map(({ id, contract_id, right_group, unique_id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
             <tr key={id} className="text-sm">
+          { openWindows.map(({ id, territory, right, license_type, start_date, start_confirmed, end_date, end_confirmed }) => (
               <td className="">{territory}</td>
               <td className="">{right}</td>
               <td className="">{license_type}</td>
