@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import {
   IContract, IOpenWindow,
   ContractTypes, ContractStatuses,
-  DealStatuses, ProductionStatuses,
+  DealStatuses,
   DealTypes,
 } from '@/utils/interfaces';
 import { Button } from '@/design-system/button';
