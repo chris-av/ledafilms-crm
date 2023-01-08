@@ -140,8 +140,6 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   const resetFilters = () => setFilter(filterState);
 
-  console.log({ filter });
-
   return (
     <div className="w-full">
       <h1 className="text-center mb-8">Contracts</h1>
@@ -434,6 +432,7 @@ function FormTextInput({ id, name, placeholder, callback, value, extraClasses = 
 
 export async function getServerSideProps() {
   const contracts = await api.getContracts();
+  console.log({ contracts })
   return {
     props: { _contracts: contracts }
   }
