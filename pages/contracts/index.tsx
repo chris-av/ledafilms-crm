@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import {
   IContract, ContractFilter,
-  validTitleTypeOpts, validContractTypeOpts,
-  validContractStatusOpts, validDealStatusOpts,
-  validProductionStatusOpts, validDealTypeOpts
+
+  ContractTypes, TitleTypes, 
+  ContractStatuses, DealStatuses,
+  ProductionStatuses, 
+  // DealTypes, // Are these the real deal types? Reconcile with figma mockup
+  TitleCodes,
 } from '@/utils/interfaces';
-import { filterState } from '@/data/filter-state.data';
+import { initialFilterState } from '@/data/filter-state.data';
 import Link from 'next/link';
 import api from '@/utils/api';
 import Dropdown from '@/components/Dropdown';
@@ -17,24 +20,14 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   const contracts = _contracts;
 
-  const [ filter, setFilter ] = useState<ContractFilter>(filterState);
+  const [ filter, setFilter ] = useState(initialFilterState);
 
   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-
-    type filterTypes = "titleType" | "title" | "contractType" | "contractId" | "licensor" | "distributor" | "territory" | "right" | "contractStatus" | "dealStatus" | "productionStatus" ;
-    type operatorTypes = "operator" | "search";
-
-    const filterName = event.target.id as filterTypes;
-    const operatorName = event.target.name as operatorTypes;
-
-    setFilter((prev) : ContractFilter => {
+    setFilter(prev => {
       return {
         ...prev,
-        [filterName]: {
-          ...prev[filterName],
-          [operatorName]: event.target.value,
-        }
-      } as ContractFilter
+        [event.target.name]: event.target.value,
+      }
     });
   }
 
@@ -66,79 +59,7 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
 
   }
 
-  const selectTitleType = (selection : validTitleTypeOpts) => {
-    setFilter((prev) : ContractFilter => {
-      return {
-        ...prev,
-        titleType: {
-          ...prev.titleType,
-          search: selection,
-        }
-      }
-    });
-  }
-
-  const selectContractType = (selection : validContractTypeOpts) => {
-    setFilter((prev) : ContractFilter => {
-      return {
-        ...prev,
-        contractType: {
-          ...prev.contractType,
-          search: selection,
-        }
-      }
-    });
-  }
-
-  const selectContractStatus = (selection : validContractStatusOpts) => {
-    setFilter((prev) : ContractFilter => {
-      return {
-        ...prev,
-        contractStatus: {
-          ...prev.contractStatus,
-          search: selection,
-        }
-      }
-    });
-  }
-
-  const selectDealStatus = (selection : validDealStatusOpts) => {
-    setFilter((prev) : ContractFilter => {
-      return {
-        ...prev,
-        dealStatus: {
-          ...prev.dealStatus,
-          search: selection,
-        }
-      }
-    });
-  }
-
-  const selectProductionStatus = (selection : validProductionStatusOpts) => {
-    setFilter((prev) : ContractFilter => {
-      return {
-        ...prev,
-        productionStatus: {
-          ...prev.productionStatus,
-          search: selection,
-        }
-      }
-    });
-  }
-
-  const selectDealType = (selection : validDealTypeOpts) => {
-    setFilter((prev) : ContractFilter => {
-      return {
-        ...prev,
-        dealType: {
-          ...prev.dealType,
-          search: selection,
-        }
-      }
-    });
-  }
-
-  const resetFilters = () => setFilter(filterState);
+  const resetFilters = () => setFilter(initialFilterState);
 
   return (
     <div className="w-full">
@@ -155,17 +76,18 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Title</label>
             <div className="w-2/12 h-full text-center bg-gray-200 py-1 mr-2 rounded">
               <Dropdown
-                value={filter.titleType.search}
+                name="titleType"
+                value={filter.titleType}
                 options={[
-                  { label: '(any)', value: 'any' },
-                  { label: 'Film', value: 'Film' },
-                  { label: 'Series', value: 'Series' },
-                  { label: 'Mini-Series', value: 'Mini-Series' },
-                  { label: 'Format', value: 'Format' },
-                  { label: 'Seasons', value: 'Seasons' },
-                  { label: 'Episodes', value: 'Episodes' },
+                  { label: '(any)', value: '' },
+                  ...TitleTypes.map(type => {
+                    return {
+                      label: type,
+                      value: type,
+                    }
+                  })
                 ]}
-                callback={selectTitleType}
+                callback={handleChange}
               />
             </div>
             <span className="h-full flex justify-between items-center w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -173,8 +95,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
               <FormTextInput
                 callback={handleChange} 
                 id="title" 
-                name="search" 
-                value={filter.title.search}
+                name="title" 
+                value={filter.title}
                 placeholder="Contract Title" 
               />
             </span>
@@ -184,13 +106,17 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="w-3/12 block uppercase tracking-wide text-gray-700 text-xs font-bold">Contract #</label>
             <div className="w-2/12 h-full text-center bg-gray-200 py-1 mr-2 rounded">
               <Dropdown
-                value={filter.contractType.search}
+                name="contractType"
+                value={filter.contractType}
                 options={[
-                  { label: '(any)', value: 'any' },
-                  { label: 'Sales', value: 'Sales' },
-                  { label: 'Acquisition', value: 'Acquisition' },
+                  { label: '(any)', value: '' },
+                  ...ContractTypes.map(type => {
+                    return {
+                      label: type, value: type,
+                    }
+                  })
                 ]}
-                callback={selectContractType}
+                callback={handleChange}
               />
             </div>
             <span className="h-full flex justify-between items-center w-7/12 bg-gray-200 text-gray-700 border border-gray-200 rounded pl-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -198,8 +124,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
               <FormTextInput 
                 callback={handleChange} 
                 id="contractId" 
-                name="search" 
-                value={filter.contractId.search}
+                name="contractId" 
+                value={filter.contractId}
                 placeholder="Contract ID" 
               />
             </span>
@@ -212,8 +138,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
               <FormTextInput 
                 callback={handleChange} 
                 id="licensor" 
-                name="search" 
-                value={filter.licensor.search}
+                name="licensor" 
+                value={filter.licensor}
                 placeholder="Licensor" 
               />
             </span>
@@ -226,8 +152,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
               <FormTextInput 
                 callback={handleChange} 
                 id="distributor" 
-                name="search" 
-                value={filter.distributor.search}
+                name="distributor" 
+                value={filter.distributor}
                 placeholder="Contract Distributor" 
               />
             </span>
@@ -240,8 +166,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
               <FormTextInput 
                 callback={handleChange} 
                 id="territory" 
-                name="search" 
-                value={filter.territory.search}
+                name="territory" 
+                value={filter.territory}
                 placeholder="Territory" 
               />
             </span>
@@ -254,8 +180,8 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
               <FormTextInput 
                 callback={handleChange} 
                 id="right" 
-                name="search" 
-                value={filter.right.search}
+                name="right" 
+                value={filter.right}
                 placeholder="Right" 
               />
             </span>
@@ -267,14 +193,18 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center h-full w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Contract Status</label>
             <div className="flex h-full w-6/12">
               <Dropdown
-                value={filter.contractStatus.search}
+                name="contractStatus"
+                value={filter.contractStatus}
                 options={[
-                  { label: '(any)', value: 'any' },
-                  { label: 'Normal', value: 'Normal' },
-                  { label: 'Cancelled', value: 'Cancelled' },
-                  { label: 'Internal', value: 'Internal' },
+                  { label: '(any)', value: '' },
+                  ...ContractStatuses.map(type => {
+                    return {
+                      label: type,
+                      value: type,
+                    }
+                  })
                 ]}
-                callback={selectContractStatus}
+                callback={handleChange}
               />
             </div>
           </div>
@@ -283,16 +213,18 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Status</label>
             <div className="flex h-full w-6/12">
               <Dropdown
-                value={filter.dealStatus.search}
+                name="dealStatus"
+                value={filter.dealStatus}
                 options={[
-                  { label: '(any)', value: 'any' },
-                  { label: 'Long Form Executed', value: 'Long Form Executed' },
-                  { label: 'In Negotiation', value: 'In Negotiation' },
-                  { label: 'Deal Memo Executed', value: 'Deal Memo Executed' },
-                  { label: 'Cancelled', value: 'Cancelled' },
-                  { label: 'Awaiting Signature', value: 'Awaiting Signature' },
+                  { label: '(any)', value: '' },
+                  ...DealStatuses.map(type => {
+                    return {
+                      label: type,
+                      value: type,
+                    }
+                  })
                 ]}
-                callback={selectDealStatus}
+                callback={handleChange}
               />
             </div>
           </div>
@@ -301,17 +233,18 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Production Status</label>
             <div className="flex h-full w-6/12">
               <Dropdown
-                value={filter.productionStatus.search}
+                name="productionStatus"
+                value={filter.productionStatus}
                 options={[
-                  { label: '(any)', value: 'any' },
-                  { label: 'Completed', value: 'Completed' },
-                  { label: 'Pre-Production', value: 'Pre-Production' },
-                  { label: 'Post-Production', value: 'Post-Production' },
-                  { label: 'Production', value: 'Production' },
-                  { label: 'Development', value: 'Development' },
-                  { label: 'Catalog', value: 'Catalog' },
+                  { label: '(any)', value: '' },
+                  ...ProductionStatuses.map(type => {
+                    return {
+                      label: type,
+                      value: type,
+                    }
+                  })
                 ]}
-                callback={selectProductionStatus}
+                callback={handleChange}
               />
             </div>
           </div>
@@ -320,14 +253,18 @@ export function Contracts({ _contracts } : { _contracts: IContract[] }) {
             <label className="flex items-center w-6/12 uppercase tracking-wide text-gray-700 text-xs font-bold">Deal Type</label>
             <div className="flex h-full w-6/12">
               <Dropdown
-                value={filter.dealType.search}
+                name="project_code"
+                value={filter.project_code}
                 options={[
-                  { label: '(any)', value: 'any' },
-                  { label: 'Acquired Content', value: 'Acquired Content' },
-                  { label: 'Representation Only', value: 'Representation Only' },
-                  { label: 'Producted Content', value: 'Producted Content' },
+                  { label: '(any)', value: '' },
+                  ...TitleCodes.map(type => {
+                    return {
+                      label: type,
+                      value: type,
+                    }
+                  })
                 ]}
-                callback={selectDealType}
+                callback={handleChange}
               />
             </div>
           </div>
