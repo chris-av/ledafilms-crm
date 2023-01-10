@@ -11,8 +11,6 @@ interface ComponentProps {
 export default function Layout({ children } : ComponentProps) {
   const { theme } = useThemeContext();
 
-  console.log({ theme });
-
   return (
     <div className="h-screen w-full overflow-hidden">
       <Topbar />
