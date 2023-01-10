@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import ThemeProvider from '@/state/theme';
-import NavToggleProvider from '@/state/theme';
+import NavToggleProvider from '@/state/navopen';
 import Layout from '@/design-system/layout';
 import "@/styles/globals.css";
 
