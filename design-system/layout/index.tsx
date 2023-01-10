@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { useThemeContext } from '@/state/theme';
 
 import Navbar from '@/components/Navbar';
 import Topbar from '@/components/Topbar';
@@ -9,8 +8,6 @@ interface ComponentProps {
 }
 
 export default function Layout({ children } : ComponentProps) {
-  const { theme } = useThemeContext();
-
   return (
     <div className="h-screen w-full overflow-hidden">
       <Topbar />
