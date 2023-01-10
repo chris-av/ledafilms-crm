@@ -8,6 +8,9 @@ export const DealTypes = ["[MG] [++Mg]", "[Royalties/Revenue Share]",
   "Co-Production", "Flat Fee", "Minimum Guarantee", "Output Agent", "Production / License Agrmnt",
   "Straight Distribution", "Volume Deal"] as const;
 
+export const TitleTypes = ["Episodes", "Film", "Format", "Mini-Series", "Seasons", "Series"] as const;
+export const TitleCodes = ["Acquired Content", "Representation Only", "Produced Content"] as const;
+
 
 
 export * from './contract';
