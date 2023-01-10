@@ -13,10 +13,13 @@ In order to connect to the database from a local environment, make sure to have 
 
 ```
 # enter the value after the equal sign, no quotes
-PG_HOST=
-PG_USER=
-PG_PW=
-PG_DB=
+
+PG_HOST=   # the url of the database
+PG_USER=   # the username to access the postgres db
+PG_DB=     # the name of the database, availsdb
+PG_PW=     # password
+PG_PORT=   # define the port to access the db
+LEDA_URL=  # the url: either http://localhost:3000, or the production url
 ```
 
 
