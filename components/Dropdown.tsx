@@ -6,22 +6,18 @@ interface Options {
 }
 
 interface ComponentProps {
-  options: Options[],
-  value: string,
-  callback: (val: any) => any
+  name: string;
+  options: Options[];
+  value: string;
+  callback: (val: any) => any;
 }
 
-export default function Dropdown({ options, callback, value } : ComponentProps) {
-
-  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    callback(event.target.value);
-  }
-
+export default function Dropdown({ name, options, callback, value } : ComponentProps) {
   return (
     <div className="flex justify-center items-center bg-gray-200 w-full py-1 rounded">
 
       <div className="relative w-full">
-        <select value={value} onChange={handleSelect} className="block appearance-none outline-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none">
+        <select value={value} onChange={callback} name={name} className="block appearance-none outline-none w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 rounded leading-tight focus:outline-none">
           { options.map(({ label, value }) => (
             <option key={value} value={value}>{label}</option>
           )) }
@@ -30,7 +26,6 @@ export default function Dropdown({ options, callback, value } : ComponentProps) 
           <DownArrow size={15} />
         </div>
       </div>
-
     </div>
   );
 }
